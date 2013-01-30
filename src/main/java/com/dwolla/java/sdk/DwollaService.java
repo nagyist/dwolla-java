@@ -15,5 +15,5 @@ public interface DwollaService {
    void accountInformation(@Named("oauth_token") String oauthToken, Callback<DwollaAccountInformation> callback);
 
    @POST("transactions/send")
-   void send(@SingleEntity DwollaTypeBytes send, Callback<DwollaBalance> callback);
+   void send(@SingleEntity DwollaTypedBytes send, Callback<DwollaBalance> callback);
 }
