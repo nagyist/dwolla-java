@@ -1,6 +1,6 @@
 package com.dwolla.java.sdk;
 
-public class DwollaAccountInformation {
+public class AccountInformationResponse {
    public boolean Success;
    public String Message;
    public AccountInformation Response;
@@ -14,7 +14,7 @@ public class DwollaAccountInformation {
       public double Latitude;
       public double Longitude;
 
-      public AccountInformation(String city, String id, double latitude, double longitude, String name, String state, String type) {
+      public AccountInformation(String city, String state, String type, String id, String name, double latitude, double longitude) {
          City = city;
          State = state;
          Type = type;

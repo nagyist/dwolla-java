@@ -1,6 +1,6 @@
 package com.dwolla.java.sdk;
 
-public class DwollaApi {
+public class DwollaUtil {
    public String BASE_URL = "https://www.dwolla.com/oauth/rest";
 
    private String mToken;

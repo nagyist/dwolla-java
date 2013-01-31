@@ -2,7 +2,7 @@ package com.dwolla.java.sdk;
 
 import java.util.ArrayList;
 
-public class DwollaSendPost {
+public class SendRequest {
 
    // Required
    public String oauth_token;
@@ -11,9 +11,9 @@ public class DwollaSendPost {
    public double amount;
 
    // Optional
+   public boolean assumeCosts = false;
    public String destinationType = null;
    public String facilitatorAmount = null;
-   public boolean assumeCosts = false;
    public String notes = null;
    public String fundsSource = null;
    public ArrayList<AdditionalFees> additionalFees = null;
