@@ -1,22 +1,27 @@
 package com.dwolla.java.sdk;
 
-import java.util.ArrayList;
-
 public class DwollaAccountInformation {
    public boolean Success;
    public String Message;
-   public ArrayList<AccountInformation> Response;
+   public AccountInformation Response;
 
    public class AccountInformation {
-      public String city;
-      public String id;
-      public double latitude;
-      public double longitude;
-      public String name;
-      public String state;
-      public String type;
-      
-      public AccountInformation() {
+      public String City;
+      public String State;
+      public String Type;
+      public String Id;
+      public String Name;
+      public double Latitude;
+      public double Longitude;
+
+      public AccountInformation(String city, String id, double latitude, double longitude, String name, String state, String type) {
+         City = city;
+         State = state;
+         Type = type;
+         Id = id;
+         Name = name;
+         Latitude = latitude;
+         Longitude = longitude;
       }
    }
 }

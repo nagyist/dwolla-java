@@ -7,7 +7,7 @@
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>dwolla-java-sdk</name>
-	<description>Dwolla's Android and Java SDK</description>
+	<description>Dwolla's Android SDK</description>
 	<url>https://developers.dwolla.com/dev</url>
 
 	<properties>

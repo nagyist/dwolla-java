@@ -10,13 +10,12 @@ import retrofit.io.TypedBytes;
 import com.google.gson.Gson;
 
 public class DwollaTypedBytes implements TypedBytes {
-   private static final MimeType JSON = new MimeType("application/json", "json");
    static final String UTF_8 = "UTF-8";
+   static final MimeType JSON = new MimeType("application/json", "json");
    private final byte[] jsonBytes;
 
-   public DwollaTypedBytes(Object object) {
+   public DwollaTypedBytes(Gson gson, Object object) {
       try {
-         Gson gson = new Gson();
          jsonBytes = gson.toJson(object).getBytes(UTF_8);
       } catch (UnsupportedEncodingException e) {
          throw new IllegalStateException(UTF_8 + " encoding does not exist.");
