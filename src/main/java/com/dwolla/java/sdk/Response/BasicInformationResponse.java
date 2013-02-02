@@ -1,4 +1,4 @@
-package com.dwolla.java.sdk;
+package com.dwolla.java.sdk.Response;
 
 public class BasicInformationResponse {
    public boolean Success;

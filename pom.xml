@@ -7,7 +7,7 @@
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>dwolla-java-sdk</name>
-	<description>Dwolla's Android SDK</description>
+	<description>Dwolla's Java and Android SDK</description>
 	<url>https://developers.dwolla.com/dev</url>
 
 	<properties>
@@ -48,62 +48,6 @@
 			<version>${mockito-all.version}</version>
 			<scope>compile</scope>
 		</dependency>
-    <!--
-		<dagger.version>0.9</dagger.version>
-		<dependency>
-			<groupId>com.squareup</groupId>
-			<artifactId>dagger</artifactId>
-			<version>${dagger.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.squareup</groupId>
-			<artifactId>dagger-compiler</artifactId>
-			<version>${dagger.version}</version>
-			<optional>true</optional>
-		</dependency>
-    <google-http-client.version>1.13.1-beta</google-http-client.version>
-    <jackson-core.version>1.9.4</jackson-core.version>
-    <gson.version>2.1</gson.version>
-
-    <dependency>
-      <groupId>com.google.http-client</groupId>
-      <artifactId>google-http-client</artifactId>
-      <version>${google-http-client.version}</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>xpp3</artifactId>
-          <groupId>xpp3</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>httpclient</artifactId>
-          <groupId>org.apache.httpcomponents</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>junit</artifactId>
-          <groupId>junit</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>android</artifactId>
-          <groupId>com.google.android</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.google.http-client</groupId>
-      <artifactId>google-http-client-android</artifactId>
-      <version>${google-http-client.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.jackson</groupId>
-      <artifactId>jackson-core-asl</artifactId>
-      <version>${jackson-core.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>${gson.version}</version>
-    </dependency>
-    -->
 	</dependencies>
 
 	<build>

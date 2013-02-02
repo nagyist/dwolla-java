@@ -1,4 +1,4 @@
-package com.dwolla.java.sdk;
+package com.dwolla.java.sdk.Response;
 
 import java.util.ArrayList;
 

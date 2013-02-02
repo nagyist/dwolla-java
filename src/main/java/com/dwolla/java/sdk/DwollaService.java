@@ -2,6 +2,12 @@ package com.dwolla.java.sdk;
 
 import javax.inject.Named;
 
+import com.dwolla.java.sdk.Response.AccountInformationResponse;
+import com.dwolla.java.sdk.Response.BalanceResponse;
+import com.dwolla.java.sdk.Response.BasicInformationResponse;
+import com.dwolla.java.sdk.Response.SendResponse;
+import com.dwolla.java.sdk.Response.TransactionsResponse;
+
 import retrofit.http.Callback;
 import retrofit.http.GET;
 import retrofit.http.POST;
@@ -14,6 +20,15 @@ public interface DwollaService {
    /** Balance */
    @GET("balance/")
    void getBalance(@Named("oauth_token") String oauthToken, Callback<BalanceResponse> callback);
+
+   /** Contacts */
+   @GET("contacts/nearby/")
+   void getNearbySpots(@Named("client_id") String clientId, @Named("client_secret") String clientSecret, @Named("latitude") double latitude,
+         @Named("longitude") double longitude, @Named("range") int range, @Named("limit") int limit);
+
+   @GET("contacts/")
+   void getUserContacts(@Named("oauth_token") String oauthToken, @Named("search") String search, @Named("types") String types,
+         @Named("limit") int limit);
 
    /** Funding Sources */
    // Coming soon
