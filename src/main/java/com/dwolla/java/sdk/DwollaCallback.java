@@ -1,5 +1,7 @@
 package com.dwolla.java.sdk;
 
+import static com.dwolla.java.sdk.DwollaTypedBytes.UTF_8;
+
 import java.io.UnsupportedEncodingException;
 
 import org.apache.commons.codec.binary.Base64;
@@ -33,7 +35,7 @@ public abstract class DwollaCallback<T> implements Callback<T> {
 
       String body;
       try {
-         body = new String(Base64.encodeBase64(error.getRawBody()), "US-ASCII");
+         body = new String(Base64.encodeBase64(error.getRawBody()), UTF_8);
          strBuilder.append(body);
       } catch (UnsupportedEncodingException e) {
          strBuilder.append("\nError encoding body");
