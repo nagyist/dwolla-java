@@ -5,21 +5,17 @@ Java and Android SDK for Dwolla's API
 ## Requirements
 - [Dwolla Application](https://www.dwolla.com/applications)
 
-## Quick start
+## Quick Start
 
 The SDK is a work in progress. It uses the [Retrofit](https://github.com/square/retrofit) REST client. See the [DwollaService](https://github.com/rockdub2/dwolla-java-sdk/blob/master/src/main/java/com/dwolla/java/sdk/DwollaService.java) class for the API and Retrofit's [sample](https://github.com/square/retrofit/blob/master/samples/twitter-client/src/main/java/com/squareup/retrofit/sample/twitter/Client.java) for how to use it.
 
-## Documentation
+## API Documentation
 
 http://developers.dwolla.com/dev
 
 ## Support
 
 - Dwolla API | api@dwolla.com | [@DwollaAPI](https://twitter.com/DwollaAPI)
-- Rocky Warren | rocky@dwolla.com | [@therockstorm](https://twitter.com/therockstorm)
-
-## Credits
-
 - Rocky Warren | rocky@dwolla.com | [@therockstorm](https://twitter.com/therockstorm)
 
 ## License 
