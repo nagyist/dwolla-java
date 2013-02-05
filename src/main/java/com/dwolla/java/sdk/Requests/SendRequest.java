@@ -1,4 +1,4 @@
-package com.dwolla.java.sdk.Requests;
+package com.dwolla.java.sdk.requests;
 
 import java.util.ArrayList;
 

@@ -7,15 +7,15 @@ import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.SingleEntity;
 
-import com.dwolla.java.sdk.Responses.AccountInformationResponse;
-import com.dwolla.java.sdk.Responses.BalanceResponse;
-import com.dwolla.java.sdk.Responses.BasicInformationResponse;
-import com.dwolla.java.sdk.Responses.FundingSourcesByIdResponse;
-import com.dwolla.java.sdk.Responses.FundingSourcesListingResponse;
-import com.dwolla.java.sdk.Responses.NearbySpotsResponse;
-import com.dwolla.java.sdk.Responses.SendResponse;
-import com.dwolla.java.sdk.Responses.TransactionsResponse;
-import com.dwolla.java.sdk.Responses.UserContactsResponse;
+import com.dwolla.java.sdk.responses.AccountInformationResponse;
+import com.dwolla.java.sdk.responses.BalanceResponse;
+import com.dwolla.java.sdk.responses.BasicInformationResponse;
+import com.dwolla.java.sdk.responses.FundingSourcesByIdResponse;
+import com.dwolla.java.sdk.responses.FundingSourcesListingResponse;
+import com.dwolla.java.sdk.responses.NearbySpotsResponse;
+import com.dwolla.java.sdk.responses.SendResponse;
+import com.dwolla.java.sdk.responses.TransactionsResponse;
+import com.dwolla.java.sdk.responses.UserContactsResponse;
 
 /**
  * Dwolla API endpoints, see <a href="https://developers.dwolla.com/dev/docs/">developers.dwolla.com/dev/docs</a> for more information.

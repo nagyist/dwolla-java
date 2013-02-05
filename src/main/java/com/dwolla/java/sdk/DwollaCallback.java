@@ -17,26 +17,17 @@ public abstract class DwollaCallback<T> implements Callback<T> {
    @Override
    public void success(T t) {
       if (t != null) {
-         StringBuilder strBuilder = new StringBuilder("Retrofit success: ");
-         strBuilder.append(t.getClass().getName());
-         log.info(strBuilder.toString());
+         log.info(new StringBuilder("Retrofit success: ").append(t.getClass().getName()).toString());
       }
    }
 
    @Override
    public void failure(RetrofitError error) {
-      StringBuilder strBuilder = new StringBuilder("Retrofit failure:\nUrl: ");
-      strBuilder.append(error.getUrl());
-      strBuilder.append("\nStatus code: ");
-      strBuilder.append(error.getStatusCode());
-      strBuilder.append("\nHeaders: ");
-      strBuilder.append(error.getHeaders());
-      strBuilder.append("\nBody: ");
+      StringBuilder strBuilder = new StringBuilder("Retrofit failure:\nUrl: ").append(error.getUrl()).append("\nStatus code: ")
+            .append(error.getStatusCode()).append("\nHeaders: ").append(error.getHeaders()).append("\nBody: ");
 
-      String body;
       try {
-         body = new String(Base64.encodeBase64(error.getRawBody()), UTF_8);
-         strBuilder.append(body);
+         strBuilder.append(new String(Base64.encodeBase64(error.getRawBody()), UTF_8));
       } catch (UnsupportedEncodingException e) {
          strBuilder.append("\nError encoding body");
       }
@@ -45,9 +36,7 @@ public abstract class DwollaCallback<T> implements Callback<T> {
    }
 
    public void failure(String message) {
-      StringBuilder strBuilder = new StringBuilder("Dwolla API Failure:\n");
-      strBuilder.append(message);
-      log.error(strBuilder.toString());
+      log.error(new StringBuilder("Dwolla API Failure:\n").append(message).toString());
    }
 
 }

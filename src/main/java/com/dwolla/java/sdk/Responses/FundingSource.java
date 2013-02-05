@@ -1,4 +1,4 @@
-package com.dwolla.java.sdk.Responses;
+package com.dwolla.java.sdk.responses;
 
 public class FundingSource {
    public String Id;
