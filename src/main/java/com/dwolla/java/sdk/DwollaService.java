@@ -10,7 +10,7 @@ import retrofit.http.SingleEntity;
 import com.dwolla.java.sdk.responses.AccountInformationResponse;
 import com.dwolla.java.sdk.responses.BalanceResponse;
 import com.dwolla.java.sdk.responses.BasicAccountInformationResponse;
-import com.dwolla.java.sdk.responses.FundingSourcesResponse;
+import com.dwolla.java.sdk.responses.FundingSourcesByIdResponse;
 import com.dwolla.java.sdk.responses.FundingSourcesListingResponse;
 import com.dwolla.java.sdk.responses.NearbySpotsResponse;
 import com.dwolla.java.sdk.responses.SendResponse;
@@ -37,7 +37,7 @@ public interface DwollaService {
    /** Funding Sources */
    @GET("fundingsources/{funding_id}/")
    void getFundingSourcesById(@Named("oauth_token") String oauthToken, @Named("funding_id") String funding_id,
-         Callback<FundingSourcesResponse> callback);
+         Callback<FundingSourcesByIdResponse> callback);
 
    @GET("fundingsources/")
    void getFundingSourcesListing(@Named("oauth_token") String oauthToken, Callback<FundingSourcesListingResponse> callback);
