@@ -1,7 +1,5 @@
 package com.dwolla.java.sdk.responses;
 
-public class BalanceResponse {
-   public boolean Success;
-   public String Message;
+public class BalanceResponse extends Response {
    public double Response;
 }

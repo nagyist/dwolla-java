@@ -3,7 +3,7 @@ package com.dwolla.java.sdk.requests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.dwolla.java.sdk.requests.SendRequest.AdditionalFee;
+import com.dwolla.java.sdk.models.Fee;
 import com.google.gson.Gson;
 
 public class SendRequestTest {
@@ -50,7 +50,7 @@ public class SendRequestTest {
       request.notes = "Notes";
       request.fundsSource = "Balance";
 
-      AdditionalFee[] fees = { request.new AdditionalFee("812-000-0001", 0.01), request.new AdditionalFee("812-000-0002", 0.02) };
+      Fee[] fees = { new Fee("812-000-0001", 0.01), new Fee("812-000-0002", 0.02) };
       request.additionalFees = fees;
 
       return request;

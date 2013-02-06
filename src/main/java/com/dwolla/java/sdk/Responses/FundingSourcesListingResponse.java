@@ -1,7 +1,7 @@
 package com.dwolla.java.sdk.responses;
 
-public class FundingSourcesListingResponse {
-   public boolean Success;
-   public String Message;
-   public FundingSource Response;
+import com.dwolla.java.sdk.models.BasicFundingSource;
+
+public class FundingSourcesListingResponse extends Response {
+   public BasicFundingSource Response;
 }

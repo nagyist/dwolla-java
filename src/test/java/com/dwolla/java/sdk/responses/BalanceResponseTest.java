@@ -22,21 +22,17 @@ public class BalanceResponseTest {
 
       BalanceResponse actual = new Gson().fromJson(getJsonString(expected), BalanceResponse.class);
 
-      Assert.assertEquals(expected.Success, actual.Success);
-      Assert.assertEquals(expected.Message, actual.Message);
       Assert.assertEquals(expected.Response, actual.Response, 0.001);
    }
 
    private BalanceResponse createResponseObject() {
       BalanceResponse response = new BalanceResponse();
-      response.Success = true;
-      response.Message = "Success";
       response.Response = 1234.56;
       return response;
    }
 
    private String getJsonString(BalanceResponse obj) {
-      return String.format("{\"Success\":%s,\"Message\":\"%s\",\"Response\":%.2f}", obj.Success, obj.Message, obj.Response);
+      return String.format("{\"Response\":%.2f,\"Success\":false}", obj.Response);
    }
 
 }

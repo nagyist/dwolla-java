@@ -1,7 +1,8 @@
 package com.dwolla.java.sdk.requests;
 
-public class SendRequest {
+import com.dwolla.java.sdk.models.Fee;
 
+public class SendRequest {
    // Required
    public String oauth_token;
    public String pin;
@@ -14,18 +15,5 @@ public class SendRequest {
    public String facilitatorAmount = null;
    public String notes = null;
    public String fundsSource = null;
-   public AdditionalFee[] additionalFees = null;
-
-   public class AdditionalFee {
-
-      public String destinationId = null;
-      public double amount = 0;
-
-      public AdditionalFee(String destinationId, double amount) {
-         this.destinationId = destinationId;
-         this.amount = amount;
-      }
-
-   }
-
+   public Fee[] additionalFees = null;
 }

@@ -1,7 +1,5 @@
 package com.dwolla.java.sdk.responses;
 
-public class SendResponse {
-   public boolean Success;
-   public String Message;
+public class SendResponse extends Response {
    public int Response;
 }
