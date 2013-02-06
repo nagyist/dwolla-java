@@ -10,19 +10,17 @@ public class AccountInformationResponseTest {
    @Test
    public void testConversionToJson() {
       AccountInformationResponse response = createResponseObject();
-      String expected = getJsonString(response);
 
       String actual = new Gson().toJson(response);
 
-      Assert.assertEquals(expected, actual);
+      Assert.assertEquals(getJsonString(response), actual);
    }
 
    @Test
    public void testConversionFromJson() {
       AccountInformationResponse expected = createResponseObject();
-      String response = getJsonString(expected);
 
-      AccountInformationResponse actual = new Gson().fromJson(response, AccountInformationResponse.class);
+      AccountInformationResponse actual = new Gson().fromJson(getJsonString(expected), AccountInformationResponse.class);
 
       Assert.assertEquals(expected.Success, actual.Success);
       Assert.assertEquals(expected.Message, actual.Message);
@@ -36,11 +34,11 @@ public class AccountInformationResponseTest {
    }
 
    private AccountInformationResponse createResponseObject() {
-      AccountInformationResponse expected = new AccountInformationResponse();
-      expected.Success = true;
-      expected.Message = "Success";
-      expected.Response = expected.new AccountInformation("Des Moines", "IA", "Dwolla", "812-000-0000", "Ben Milne", 41.0, -91.0);
-      return expected;
+      AccountInformationResponse response = new AccountInformationResponse();
+      response.Success = true;
+      response.Message = "Success";
+      response.Response = response.new AccountInformation("Des Moines", "IA", "Dwolla", "812-000-0000", "Ben Milne", 41.0, -91.0);
+      return response;
    }
 
    private String getJsonString(AccountInformationResponse obj) {

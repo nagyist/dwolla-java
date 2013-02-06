@@ -4,15 +4,21 @@ import static com.dwolla.java.sdk.DwollaTypedBytes.UTF_8;
 
 import java.io.UnsupportedEncodingException;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import retrofit.http.Callback;
+import retrofit.http.Header;
 import retrofit.http.RetrofitError;
 
 public abstract class DwollaCallback<T> implements Callback<T> {
    private Log log = LogFactory.getLog(DwollaCallback.class);
+
+   public void setLog(Log log) {
+      if (log != null) {
+         this.log = log;
+      }
+   }
 
    @Override
    public void success(T t) {
@@ -24,12 +30,27 @@ public abstract class DwollaCallback<T> implements Callback<T> {
    @Override
    public void failure(RetrofitError error) {
       StringBuilder strBuilder = new StringBuilder("Retrofit failure:\nUrl: ").append(error.getUrl()).append("\nStatus code: ")
-            .append(error.getStatusCode()).append("\nHeaders: ").append(error.getHeaders()).append("\nBody: ");
+            .append(error.getStatusCode());
 
-      try {
-         strBuilder.append(new String(Base64.encodeBase64(error.getRawBody()), UTF_8));
-      } catch (UnsupportedEncodingException e) {
-         strBuilder.append("\nError encoding body");
+      if (error.getHeaders() != null) {
+         strBuilder.append("\nHeaders:");
+         for (Header header : error.getHeaders()) {
+            strBuilder.append("\n").append(header.toString());
+         }
+      }
+
+      if (error.getRawBody() != null) {
+         strBuilder.append("\nBody: ");
+         try {
+            strBuilder.append(new String(error.getRawBody(), UTF_8));
+         } catch (UnsupportedEncodingException e) {
+            strBuilder.append("Error encoding body");
+         }
+      }
+
+      if (error.getException() != null) {
+         strBuilder.append("\nException: ");
+         strBuilder.append(error.getException().toString());
       }
 
       log.error(strBuilder.toString());

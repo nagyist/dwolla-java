@@ -41,7 +41,7 @@ public class DwollaTypedBytesTest {
       try {
          new DwollaTypedBytes(new Gson(), expected).writeTo(out);
       } catch (IOException e) {
-         Assert.fail("Execption thrown");
+         Assert.fail("Unexpected execption thrown");
       }
 
       Assert.assertEquals(String.format("{\"oauth_token\":\"%s\",\"pin\":\"%s\",\"amount\":%s,\"assumeCosts\":%b}", expected.oauth_token,
