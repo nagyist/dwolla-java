@@ -18,10 +18,10 @@
 
     <!-- Dependencies -->
     <retrofit.version>1.0.0-SNAPSHOT</retrofit.version>
-    <mockito-all.version>1.9.5</mockito-all.version>
 
     <!-- Test Dependencies -->
     <junit.version>4.11</junit.version>
+    <mockito-all.version>1.9.5</mockito-all.version>
   </properties>
 
   <organization>
