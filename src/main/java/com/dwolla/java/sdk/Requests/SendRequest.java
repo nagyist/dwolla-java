@@ -1,7 +1,5 @@
 package com.dwolla.java.sdk.requests;
 
-import java.util.ArrayList;
-
 public class SendRequest {
 
    // Required
@@ -16,14 +14,14 @@ public class SendRequest {
    public String facilitatorAmount = null;
    public String notes = null;
    public String fundsSource = null;
-   public ArrayList<AdditionalFees> additionalFees = null;
+   public AdditionalFee[] additionalFees = null;
 
-   public class AdditionalFees {
+   public class AdditionalFee {
 
       public String destinationId = null;
       public double amount = 0;
 
-      public AdditionalFees(String destinationId, double amount) {
+      public AdditionalFee(String destinationId, double amount) {
          this.destinationId = destinationId;
          this.amount = amount;
       }
