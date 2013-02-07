@@ -22,7 +22,7 @@ public class BalanceResponseTest {
 
       BalanceResponse actual = new Gson().fromJson(getJsonString(expected), BalanceResponse.class);
 
-      Assert.assertEquals(expected.Response, actual.Response, 0.001);
+      Assert.assertEquals(expected, actual);
    }
 
    private BalanceResponse createResponseObject() {

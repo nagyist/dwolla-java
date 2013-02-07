@@ -23,19 +23,12 @@ public class BasicAccountInformationResponseTest {
 
       BasicAccountInformationResponse actual = new Gson().fromJson(getJsonString(expected), BasicAccountInformationResponse.class);
 
-      Assert.assertEquals(expected.Response.Id, actual.Response.Id);
-      Assert.assertEquals(expected.Response.Name, actual.Response.Name);
-      Assert.assertEquals(expected.Response.Latitude, actual.Response.Latitude, 0.01);
-      Assert.assertEquals(expected.Response.Longitude, actual.Response.Longitude, 0.01);
+      Assert.assertEquals(expected, actual);
    }
 
    private BasicAccountInformationResponse createResponseObject() {
       BasicAccountInformationResponse response = new BasicAccountInformationResponse();
-      response.Response = new BasicAccountInformation();
-      response.Response.Id = "812-000-0000";
-      response.Response.Name = "Ben Milne";
-      response.Response.Latitude = 41.0;
-      response.Response.Longitude = -91.0;
+      response.Response = new BasicAccountInformation("812-000-0000", "Ben Milne", 41.0, -91.0);
       return response;
    }
 

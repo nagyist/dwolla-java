@@ -23,23 +23,12 @@ public class FundingSourcesByIdResponseTest {
 
       FundingSourcesByIdResponse actual = new Gson().fromJson(getJsonString(expected), FundingSourcesByIdResponse.class);
 
-      Assert.assertEquals(expected.Response.Id, actual.Response.Id);
-      Assert.assertEquals(expected.Response.Name, actual.Response.Name);
-      Assert.assertEquals(expected.Response.Type, actual.Response.Type);
-      Assert.assertEquals(expected.Response.Verified, actual.Response.Verified);
-      Assert.assertEquals(expected.Response.ProcessingType, actual.Response.ProcessingType);
-      Assert.assertEquals(expected.Response.Balance, actual.Response.Balance, 0.001);
+      Assert.assertEquals(expected, actual);
    }
 
    private FundingSourcesByIdResponse createResponseObject() {
       FundingSourcesByIdResponse response = new FundingSourcesByIdResponse();
-      response.Response = new FundingSource();
-      response.Response.Id = "123abc";
-      response.Response.Name = "Bank of Ben";
-      response.Response.Type = "Checking";
-      response.Response.Verified = true;
-      response.Response.ProcessingType = "FiSync";
-      response.Response.Balance = 1234.56;
+      response.Response = new FundingSource("123abc", "Bank of Ben", "Checking", true, "FiSync", 1234.56);
       return response;
    }
 

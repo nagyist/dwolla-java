@@ -23,25 +23,12 @@ public class AccountInformationResponseTest {
 
       AccountInformationResponse actual = new Gson().fromJson(getJsonString(expected), AccountInformationResponse.class);
 
-      Assert.assertEquals(expected.Response.City, actual.Response.City);
-      Assert.assertEquals(expected.Response.State, actual.Response.State);
-      Assert.assertEquals(expected.Response.Type, actual.Response.Type);
-      Assert.assertEquals(expected.Response.Id, actual.Response.Id);
-      Assert.assertEquals(expected.Response.Name, actual.Response.Name);
-      Assert.assertEquals(expected.Response.Latitude, actual.Response.Latitude, 0.01);
-      Assert.assertEquals(expected.Response.Longitude, actual.Response.Longitude, 0.01);
+      Assert.assertEquals(expected, actual);
    }
 
    private AccountInformationResponse createResponseObject() {
       AccountInformationResponse response = new AccountInformationResponse();
-      response.Response = new AccountInformation();
-      response.Response.City = "Des Moines";
-      response.Response.State = "IA";
-      response.Response.Type = "Dwolla";
-      response.Response.Id = "812-000-0000";
-      response.Response.Name = "Ben Milne";
-      response.Response.Latitude = 41.0;
-      response.Response.Longitude = -91.0;
+      response.Response = new AccountInformation("812-000-0000", "Ben Milne", 41.0, -91.0, "Des Moines", "IA", "Dwolla");
       return response;
    }
 
