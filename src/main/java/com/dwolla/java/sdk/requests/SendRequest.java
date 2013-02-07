@@ -1,6 +1,6 @@
 package com.dwolla.java.sdk.requests;
 
-import com.dwolla.java.sdk.models.Fee;
+import com.dwolla.java.sdk.models.AdditionalFee;
 
 public class SendRequest {
    // Required
@@ -15,5 +15,5 @@ public class SendRequest {
    public String facilitatorAmount = null;
    public String notes = null;
    public String fundsSource = null;
-   public Fee[] additionalFees = null;
+   public AdditionalFee[] additionalFees = null;
 }
