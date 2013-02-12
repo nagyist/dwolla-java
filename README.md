@@ -1,5 +1,7 @@
 # dwolla-java-sdk v0.1
 
+[![Build Status](https://travis-ci.org/rockdub2/dwolla-java-sdk.png?branch=master)](https://travis-ci.org/rockdub2/dwolla-java-sdk)
+
 Java and Android SDK for Dwolla's API
 
 ## Requirements
