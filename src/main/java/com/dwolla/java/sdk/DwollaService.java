@@ -58,7 +58,7 @@ public interface DwollaService {
          @Named("groupId") String groupId, Callback<TransactionsResponse> callback);
 
    @POST("/transactions/send")
-   void send(@SingleEntity DwollaTypedBytes send, Callback<SendResponse> callback);
+   void send(@SingleEntity DwollaTypedBytes request, Callback<SendResponse> callback);
 
    /** Users */
    @GET("/users/")

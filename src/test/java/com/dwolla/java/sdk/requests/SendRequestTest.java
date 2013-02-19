@@ -23,37 +23,12 @@ public class SendRequestTest {
 
       SendRequest actual = new Gson().fromJson(getJsonString(expected), SendRequest.class);
 
-      Assert.assertEquals(expected.oauth_token, actual.oauth_token);
-      Assert.assertEquals(expected.pin, actual.pin);
-      Assert.assertEquals(expected.destinationId, actual.destinationId);
-      Assert.assertEquals(expected.amount, actual.amount, 0.001);
-      Assert.assertEquals(expected.assumeCosts, actual.assumeCosts);
-      Assert.assertEquals(expected.destinationType, actual.destinationType);
-      Assert.assertEquals(expected.facilitatorAmount, actual.facilitatorAmount);
-      Assert.assertEquals(expected.notes, actual.notes);
-      Assert.assertEquals(expected.fundsSource, actual.fundsSource);
-      Assert.assertEquals(expected.additionalFees[0].destinationId, actual.additionalFees[0].destinationId);
-      Assert.assertEquals(expected.additionalFees[0].amount, actual.additionalFees[0].amount, 0.001);
-      Assert.assertEquals(expected.additionalFees[1].destinationId, actual.additionalFees[1].destinationId);
-      Assert.assertEquals(expected.additionalFees[1].amount, actual.additionalFees[1].amount, 0.001);
+      Assert.assertEquals(expected, actual);
    }
 
    private SendRequest createRequestObject() {
-      SendRequest request = new SendRequest();
-      request.oauth_token = "123abc";
-      request.pin = "123";
-      request.destinationId = "812-000-0000";
-      request.amount = 1.11;
-      request.assumeCosts = true;
-      request.destinationType = "Dwolla";
-      request.facilitatorAmount = "0.05";
-      request.notes = "Notes";
-      request.fundsSource = "Balance";
-
       AdditionalFee[] fees = { new AdditionalFee("812-000-0001", 0.01), new AdditionalFee("812-000-0002", 0.02) };
-      request.additionalFees = fees;
-
-      return request;
+      return new SendRequest("123abc", "123", "812-000-0000", 1.11, true, "Dwolla", "0.05", "Notes", "Balance", fees);
    }
 
    private String getJsonString(SendRequest obj) {
