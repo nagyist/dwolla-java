@@ -10,7 +10,7 @@ import retrofit.io.TypedBytes;
 import com.google.gson.Gson;
 
 public class DwollaTypedBytes implements TypedBytes {
-   static final String UTF_8 = "UTF-8";
+   public static final String UTF_8 = "UTF-8";
    static final MimeType JSON = new MimeType("application/json", "json");
    private final byte[] jsonBytes;
 

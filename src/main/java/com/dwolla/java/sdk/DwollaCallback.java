@@ -13,6 +13,7 @@ import retrofit.http.RetrofitError;
 
 public abstract class DwollaCallback<T> implements Callback<T> {
    private Log log = LogFactory.getLog(DwollaCallback.class);
+   protected String mLastFailure = "";
 
    public void setLog(Log log) {
       if (log != null) {
@@ -29,35 +30,39 @@ public abstract class DwollaCallback<T> implements Callback<T> {
 
    @Override
    public void failure(RetrofitError error) {
-      StringBuilder strBuilder = new StringBuilder("Retrofit failure:\nUrl: ").append(error.getUrl()).append("\nStatus code: ")
-            .append(error.getStatusCode());
+      StringBuilder sb = new StringBuilder("Retrofit failure:\nUrl: ").append(error.getUrl());
+
+      if (error.getStatusCode() != 0) {
+         sb.append("\nStatus code: ").append(error.getStatusCode());
+      }
 
       if (error.getHeaders() != null) {
-         strBuilder.append("\nHeaders:");
+         sb.append("\nHeaders:");
          for (Header header : error.getHeaders()) {
-            strBuilder.append("\n").append(header.toString());
+            sb.append("\n").append(header.toString());
          }
       }
 
       if (error.getRawBody() != null) {
-         strBuilder.append("\nBody: ");
+         sb.append("\nBody: ");
          try {
-            strBuilder.append(new String(error.getRawBody(), UTF_8));
+            sb.append(new String(error.getRawBody(), UTF_8));
          } catch (UnsupportedEncodingException e) {
-            strBuilder.append("Error encoding body");
+            sb.append("Error parsing body");
          }
       }
 
       if (error.getException() != null) {
-         strBuilder.append("\nException: ");
-         strBuilder.append(error.getException().toString());
+         sb.append("\nException: ");
+         sb.append(error.getException().toString());
       }
 
-      log.error(strBuilder.toString());
+      mLastFailure = sb.toString();
+      log.error(mLastFailure);
    }
 
    public void failure(String message) {
-      log.error(new StringBuilder("Dwolla API Failure:\n").append(message).toString());
+      log.error(new StringBuilder("Dwolla API Failure: ").append(message).toString());
    }
 
 }

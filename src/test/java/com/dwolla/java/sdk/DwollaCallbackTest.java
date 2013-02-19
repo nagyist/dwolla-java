@@ -80,7 +80,7 @@ public class DwollaCallbackTest {
 
       callback.failure(message);
 
-      verify(log).error(String.format("Dwolla API Failure:\n%s", message));
+      verify(log).error(String.format("Dwolla API Failure: %s", message));
    }
 
    private class TestCallback extends DwollaCallback<BalanceResponse> {

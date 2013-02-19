@@ -22,24 +22,24 @@ import com.dwolla.java.sdk.responses.UserContactsResponse;
  * */
 public interface DwollaService {
    /** Balance */
-   @GET("balance/")
+   @GET("/balance/")
    void getBalance(@Named("oauth_token") String oauthToken, Callback<BalanceResponse> callback);
 
    /** Contacts */
-   @GET("contacts/nearby/")
+   @GET("/contacts/nearby/")
    void getNearbySpots(@Named("client_id") String clientId, @Named("client_secret") String clientSecret, @Named("latitude") double latitude,
          @Named("longitude") double longitude, @Named("range") int range, @Named("limit") int limit, Callback<NearbySpotsResponse> callback);
 
-   @GET("contacts/")
+   @GET("/contacts/")
    void getUserContacts(@Named("oauth_token") String oauthToken, @Named("search") String search, @Named("types") String types,
          @Named("limit") int limit, Callback<UserContactsResponse> callback);
 
    /** Funding Sources */
-   @GET("fundingsources/{funding_id}/")
+   @GET("/fundingsources/{funding_id}/")
    void getFundingSourcesById(@Named("oauth_token") String oauthToken, @Named("funding_id") String funding_id,
          Callback<FundingSourcesByIdResponse> callback);
 
-   @GET("fundingsources/")
+   @GET("/fundingsources/")
    void getFundingSourcesListing(@Named("oauth_token") String oauthToken, Callback<FundingSourcesListingResponse> callback);
 
    /** MassPay */
@@ -52,19 +52,19 @@ public interface DwollaService {
    // Coming soon
 
    /** Transactions */
-   @GET("transactions/")
+   @GET("/transactions/")
    void getTransactions(@Named("oauth_token") String oauthToken, @Named("client_id") String clientId, @Named("client_secret") String clientSecret,
          @Named("sinceDate") String sinceDate, @Named("types") String types, @Named("limit") int limit, @Named("skip") int skip,
          @Named("groupId") String groupId, Callback<TransactionsResponse> callback);
 
-   @POST("transactions/send")
+   @POST("/transactions/send")
    void send(@SingleEntity DwollaTypedBytes send, Callback<SendResponse> callback);
 
    /** Users */
-   @GET("users/")
+   @GET("/users/")
    void getAccountInformation(@Named("oauth_token") String oauthToken, Callback<AccountInformationResponse> callback);
 
-   @GET("users/{account_identifier}")
+   @GET("/users/{account_identifier}")
    void getBasicAccountInformation(@Named("account_identifier") String accountIdentifier, @Named("client_id") String clientId,
          @Named("client_secret") String clientSecret, Callback<BasicAccountInformationResponse> callback);
 }
