@@ -3,7 +3,7 @@ jdk:
   - oraclejdk7
   - openjdk7
 before_install:
-  - git clone https://github.com/rockdub2/retrofit.git
+  - git clone https://github.com/therockstorm/retrofit.git
   - cd retrofit
   - mvn install --quiet -DskipTests=true
   - cd ..
