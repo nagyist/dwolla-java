@@ -9,7 +9,38 @@ Java and Android SDK for Dwolla's API
 
 ## Quick Start
 
-This SDK is a work in progress. It uses the [Retrofit](https://github.com/square/retrofit) REST client. See the [DwollaService](https://github.com/therockstorm/dwolla-java-sdk/blob/master/src/main/java/com/dwolla/java/sdk/DwollaService.java) class for the API and Retrofit's [sample](https://github.com/square/retrofit/blob/master/samples/twitter-client/src/main/java/com/squareup/retrofit/sample/twitter/Client.java) for how to use it.
+This wrapper uses the [Retrofit](https://github.com/square/retrofit) REST client. See the [DwollaService](https://github.com/therockstorm/dwolla-java-sdk/blob/master/src/main/java/com/dwolla/java/sdk/DwollaService.java) class for the supported endpoints and Retrofit's [sample](https://github.com/square/retrofit/blob/master/samples/twitter-client/src/main/java/com/squareup/retrofit/sample/twitter/Client.java) for more details.
+
+Create a callback that extends DwollaCallback with the correct Response object:
+```java
+private class BasicInformationCallback extends DwollaCallback<BasicAccountInformationResponse> {
+      @Override
+      public void success(BasicAccountInformationResponse response) {
+         if (!response.Success || response.Response == null) {
+            super.failure(response.Message);
+         } else {
+            // Operate on response
+         }
+      }
+
+      @Override
+      public void failure(RetrofitError error) {
+         super.failure(error);
+      }
+   }
+```
+Then create the service and make the API call:
+```java
+DwollaService service = new RestAdapter.Builder().setServer(
+   new Server("https://www.dwolla.com/oauth/rest")).build().create(DwollaService.class);
+service.getBasicAccountInformation(accountId, mEncodedKey, mEncodedSecret, 
+   new BasicInformationCallback());
+```
+Post requests are just as simple. After creating a callback and DwollaService as shown above, make the API call:
+```java
+service.send(new DwollaTypedBytes(new Gson(), 
+   new SendRequest(mToken, pin, destinationId, amount)), new SendCallback());
+```
 
 ## API Documentation
 
