@@ -26,7 +26,7 @@ public interface DwollaService {
    void getBalance(@Named("oauth_token") String oauthToken, Callback<BalanceResponse> callback);
 
    /** Contacts */
-   @GET("/contacts/nearby/")
+   @GET("/contacts/nearby")
    void getNearbySpots(@Named("client_id") String clientId, @Named("client_secret") String clientSecret, @Named("latitude") double latitude,
          @Named("longitude") double longitude, @Named("range") int range, @Named("limit") int limit, Callback<NearbySpotsResponse> callback);
 
