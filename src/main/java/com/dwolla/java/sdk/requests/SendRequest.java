@@ -6,13 +6,24 @@ import com.dwolla.java.sdk.models.AdditionalFee;
 
 public class SendRequest {
 
-   // Required
+   /** destinationType constants */
+   public static final String DWOLLA = "Dwolla";
+   public static final String PHONE = "Phone";
+   public static final String EMAIL = "Email";
+   public static final String FACEBOOK = "Facebook";
+   public static final String TWITTER = "Twitter";
+
+   /** fundsSource constants */
+   public static final String BALANCE = "Balance";
+   public static final String BANK = "Bank";
+
+   /** Required */
    public String oauth_token;
    public String pin;
    public String destinationId;
    public double amount;
 
-   // Optional
+   /** Optional */
    public boolean assumeCosts = false;
    public String destinationType = null;
    public String facilitatorAmount = null;
