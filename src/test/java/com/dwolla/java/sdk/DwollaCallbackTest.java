@@ -60,7 +60,7 @@ public class DwollaCallbackTest {
    }
 
    @Test
-   public void testFailureLogsRetrofitError() {
+   public void testFailureSetsLasError() {
       List<Header> headers = Arrays.asList(new Header("name1", "value1"), new Header("name2", "value2"));
       String body = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<body>\n</body>\n</html>";
       RetrofitError error = RetrofitError.conversionError("https://www.dwolla.com", new GsonConverter(new Gson()), 500, headers, body.getBytes(),
@@ -68,10 +68,10 @@ public class DwollaCallbackTest {
 
       callback.failure(error);
 
-      verify(log).error(
-            String.format("Retrofit failure:\nUrl: %s\nStatus code: %d\nHeaders:\n%s: %s\n%s: %s\nBody: %s\nException: %s", error.getUrl(),
-                  error.getStatusCode(), headers.get(0).getName(), headers.get(0).getValue(), headers.get(1).getName(), headers.get(1).getValue(),
-                  body, error.getException().toString()));
+      Assert.assertEquals(callback.mLastFailure, String.format(
+            "Retrofit failure:\nUrl: %s\nStatus code: %d\nHeaders:\n%s: %s\n%s: %s\nBody: %s\nException: %s", error.getUrl(), error.getStatusCode(),
+            headers.get(0).getName(), headers.get(0).getValue(), headers.get(1).getName(), headers.get(1).getValue(), body, error.getException()
+                  .toString()));
    }
 
    @Test
