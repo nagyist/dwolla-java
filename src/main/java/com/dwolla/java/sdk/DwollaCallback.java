@@ -58,7 +58,7 @@ public abstract class DwollaCallback<T> implements Callback<T> {
       }
 
       mLastFailure = sb.toString();
-      log.error(mLastFailure);
+      // Don't log since it may contain sensitive user information
    }
 
    public void failure(String message) {

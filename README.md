@@ -19,7 +19,7 @@ private class BasicInformationCallback extends DwollaCallback<BasicAccountInform
          if (!response.Success || response.Response == null) {
             super.failure(response.Message);
          } else {
-            // Operate on response
+            // Handle response...
          }
       }
 
