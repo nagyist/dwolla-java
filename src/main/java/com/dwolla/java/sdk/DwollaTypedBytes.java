@@ -10,6 +10,7 @@ import retrofit.io.TypedBytes;
 import com.google.gson.Gson;
 
 public class DwollaTypedBytes implements TypedBytes {
+
    public static final String UTF_8 = "UTF-8";
    static final MimeType JSON = new MimeType("application/json", "json");
    private final byte[] jsonBytes;
@@ -36,4 +37,5 @@ public class DwollaTypedBytes implements TypedBytes {
    public void writeTo(OutputStream out) throws IOException {
       out.write(jsonBytes);
    }
+
 }
