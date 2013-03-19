@@ -13,6 +13,7 @@ import com.dwolla.java.sdk.responses.BasicAccountInformationResponse;
 import com.dwolla.java.sdk.responses.FundingSourcesByIdResponse;
 import com.dwolla.java.sdk.responses.FundingSourcesListingResponse;
 import com.dwolla.java.sdk.responses.NearbySpotsResponse;
+import com.dwolla.java.sdk.responses.RequestResponse;
 import com.dwolla.java.sdk.responses.SendResponse;
 import com.dwolla.java.sdk.responses.TransactionsResponse;
 import com.dwolla.java.sdk.responses.UserContactsResponse;
@@ -32,8 +33,8 @@ public interface DwollaService {
          @Named(Consts.Api.LIMIT) int limit, Callback<NearbySpotsResponse> callback);
 
    @GET("/contacts/")
-   void getUserContacts(@Named(Consts.Api.TOKEN) String oauthToken, @Named(Consts.Api.SEARCH) String search,
-         @Named(Consts.Api.TYPES) String types, @Named(Consts.Api.LIMIT) int limit, Callback<UserContactsResponse> callback);
+   void getUserContacts(@Named(Consts.Api.TOKEN) String oauthToken, @Named(Consts.Api.SEARCH) String search, @Named(Consts.Api.TYPES) String types,
+         @Named(Consts.Api.LIMIT) int limit, Callback<UserContactsResponse> callback);
 
    /** Funding Sources */
    @GET("/fundingsources/{funding_id}/")
@@ -44,14 +45,15 @@ public interface DwollaService {
    void getFundingSourcesListing(@Named(Consts.Api.TOKEN) String oauthToken, Callback<FundingSourcesListingResponse> callback);
 
    /** Requests */
-   // Coming soon
+   @POST("/requests/request")
+   void request(@SingleEntity DwollaTypedBytes request, Callback<RequestResponse> callback);
 
    /** Transactions */
    @GET("/transactions/")
    void getTransactions(@Named(Consts.Api.TOKEN) String oauthToken, @Named(Consts.Api.CLIENT_ID) String clientId,
-         @Named(Consts.Api.CLIENT_SECRET) String clientSecret, @Named(Consts.Api.SINCE_DATE) String sinceDate,
-         @Named(Consts.Api.TYPES) String types, @Named(Consts.Api.LIMIT) int limit, @Named(Consts.Api.SKIP) int skip,
-         @Named(Consts.Api.GROUP_ID) String groupId, Callback<TransactionsResponse> callback);
+         @Named(Consts.Api.CLIENT_SECRET) String clientSecret, @Named(Consts.Api.SINCE_DATE) String sinceDate, @Named(Consts.Api.TYPES) String types,
+         @Named(Consts.Api.LIMIT) int limit, @Named(Consts.Api.SKIP) int skip, @Named(Consts.Api.GROUP_ID) String groupId,
+         Callback<TransactionsResponse> callback);
 
    @POST("/transactions/send")
    void send(@SingleEntity DwollaTypedBytes request, Callback<SendResponse> callback);
