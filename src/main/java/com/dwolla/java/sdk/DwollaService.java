@@ -45,7 +45,7 @@ public interface DwollaService {
    void getFundingSourcesListing(@Named(Consts.Api.TOKEN) String oauthToken, Callback<FundingSourcesListingResponse> callback);
 
    /** Requests */
-   @POST("/requests/request")
+   @POST("/requests/")
    void request(@SingleEntity DwollaTypedBytes request, Callback<RequestResponse> callback);
 
    /** Transactions */
