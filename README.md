@@ -1,11 +1,8 @@
-# dwolla-java-sdk v0.1
+# `dwolla-java-sdk v1.0`
 
 [![Build Status](https://travis-ci.org/therockstorm/dwolla-java-sdk.png?branch=master)](https://travis-ci.org/therockstorm/dwolla-java-sdk)
 
-Java and Android SDK for Dwolla's API
-
-## Requirements
-- [Dwolla Application](https://www.dwolla.com/applications)
+The [Dwolla API](http://developers.dwolla.com/dev) wrapper for Java and Android.
 
 ## Quick Start
 
@@ -16,11 +13,10 @@ Create a callback that extends DwollaCallback with the correct Response object:
 private class BasicInformationCallback extends DwollaCallback<BasicAccountInformationResponse> {
       @Override
       public void success(BasicAccountInformationResponse response) {
-         if (!response.Success || response.Response == null) {
-            super.failure(response.Message);
-         } else {
+         if (response.Success)
             // Handle response...
-         }
+         else
+            super.failure(response.Message);
       }
 
       @Override
@@ -42,23 +38,13 @@ service.send(new DwollaTypedBytes(new Gson(),
    new SendRequest(mToken, pin, destinationId, amount)), new SendCallback());
 ```
 
-## API Documentation
-
-http://developers.dwolla.com/dev
-
 ## Support
 
 - Dwolla API | api@dwolla.com | [@DwollaAPI](https://twitter.com/DwollaAPI)
 - Rocky Warren | rocky@dwolla.com | [@therockstorm](https://twitter.com/therockstorm)
 
-## License 
+## License
 
-(MIT License)
+Copyright © 2013 Dwolla
 
-Copyright (c) 2012 Dwolla
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+[MIT License](http://www.opensource.org/licenses/mit-license.php)
