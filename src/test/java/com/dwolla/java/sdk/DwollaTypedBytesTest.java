@@ -6,8 +6,6 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import retrofit.io.MimeType;
-
 import com.dwolla.java.sdk.requests.SendRequest;
 import com.dwolla.java.sdk.responses.BalanceResponse;
 import com.google.gson.Gson;
@@ -21,12 +19,11 @@ public class DwollaTypedBytesTest {
 
    @Test
    public void testMimeTypeReturnsJson() {
-      MimeType expected = new MimeType("application/json", "json");
+      String expectedMime = "application/json";
 
-      MimeType actual = new DwollaTypedBytes(new Gson(), new BalanceResponse()).mimeType();
+      DwollaTypedBytes actual = new DwollaTypedBytes(new Gson(), new BalanceResponse());
 
-      Assert.assertEquals(expected.mimeName(), actual.mimeName());
-      Assert.assertEquals(expected.extension(), actual.extension());
+      Assert.assertEquals(expectedMime, actual.mimeType());
    }
 
    @Test
@@ -45,7 +42,8 @@ public class DwollaTypedBytesTest {
          Assert.fail("Unexpected execption thrown");
       }
 
-      Assert.assertEquals("{\"oauth_token\":\"123abc\",\"pin\":\"1234\",\"destinationId\":\"812-000-0000\",\"amount\":0.01,\"assumeCosts\":false}", out.toString());
+      Assert.assertEquals("{\"oauth_token\":\"123abc\",\"pin\":\"1234\",\"destinationId\":\"812-000-0000\",\"amount\":0.01,\"assumeCosts\":false}",
+            out.toString());
    }
 
    private SendRequest createRequest() {

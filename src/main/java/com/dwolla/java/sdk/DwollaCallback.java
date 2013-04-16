@@ -1,8 +1,8 @@
 package com.dwolla.java.sdk;
 
-import static com.dwolla.java.sdk.DwollaTypedBytes.UTF_8;
-
-import java.io.UnsupportedEncodingException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -10,6 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import retrofit.http.Callback;
 import retrofit.http.Header;
 import retrofit.http.RetrofitError;
+import retrofit.http.client.Response;
 
 public abstract class DwollaCallback<T> implements Callback<T> {
    private Log log = LogFactory.getLog(DwollaCallback.class);
@@ -22,7 +23,7 @@ public abstract class DwollaCallback<T> implements Callback<T> {
    }
 
    @Override
-   public void success(T t) {
+   public void success(T t, Response response) {
       if (t != null) {
          log.info(new StringBuilder("Retrofit success: ").append(t.getClass().getName()).toString());
       }
@@ -30,31 +31,40 @@ public abstract class DwollaCallback<T> implements Callback<T> {
 
    @Override
    public void failure(RetrofitError error) {
+      Response response = error.getResponse();
       StringBuilder sb = new StringBuilder("Retrofit failure:\nUrl: ").append(error.getUrl());
 
-      if (error.getStatusCode() != 0) {
-         sb.append("\nStatus code: ").append(error.getStatusCode());
-      }
+      sb.append("\nisNetworkError: ").append(error.isNetworkError());
+      sb.append("\nMessage: ").append(error.getMessage());
+      sb.append("\nCause: ").append(error.getCause());
 
-      if (error.getHeaders() != null) {
-         sb.append("\nHeaders:");
-         for (Header header : error.getHeaders()) {
-            sb.append("\n").append(header.toString());
+      if (response != null) {
+         if (response.getStatus() != 0) {
+            sb.append("\nStatus code: ").append(response.getStatus());
          }
-      }
 
-      if (error.getRawBody() != null) {
-         sb.append("\nBody: ");
-         try {
-            sb.append(new String(error.getRawBody(), UTF_8));
-         } catch (UnsupportedEncodingException e) {
-            sb.append("Error parsing body");
+         sb.append("\nReason: ").append(response.getReason());
+
+         if (response.getHeaders() != null) {
+            sb.append("\nHeaders:");
+            for (Header header : response.getHeaders()) {
+               sb.append("\n").append(header.toString());
+            }
          }
-      }
 
-      if (error.getException() != null) {
-         sb.append("\nException: ");
-         sb.append(error.getException().toString());
+         if (response.getBody() != null) {
+            sb.append("\nBody: ");
+            try {
+               BufferedReader br = new BufferedReader(new InputStreamReader(response.getBody().in()));
+               String line;
+               while ((line = br.readLine()) != null) {
+                  sb.append(line);
+               }
+               br.close();
+            } catch (IOException e) {
+               sb.append("Error parsing body");
+            }
+         }
       }
 
       mLastFailure = sb.toString();

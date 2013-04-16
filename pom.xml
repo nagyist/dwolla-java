@@ -20,6 +20,7 @@
     <!-- Dependencies -->
     <retrofit.version>1.0.0-SNAPSHOT</retrofit.version>
     <maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
+    <commons-logging.version>1.1.1</commons-logging.version>
 
     <!-- Test Dependencies -->
     <junit.version>4.11</junit.version>
@@ -37,6 +38,11 @@
       <artifactId>retrofit</artifactId>
       <version>${retrofit.version}</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>${commons-logging.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

@@ -4,15 +4,14 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 
-import retrofit.io.MimeType;
-import retrofit.io.TypedBytes;
+import retrofit.http.mime.TypedOutput;
 
 import com.google.gson.Gson;
 
-public class DwollaTypedBytes implements TypedBytes {
+public class DwollaTypedBytes implements TypedOutput {
 
    public static final String UTF_8 = "UTF-8";
-   static final MimeType JSON = new MimeType("application/json", "json");
+   static final String mimeType = "application/json";
    private final byte[] jsonBytes;
 
    public DwollaTypedBytes(Gson gson, Object object) {
@@ -24,12 +23,12 @@ public class DwollaTypedBytes implements TypedBytes {
    }
 
    @Override
-   public MimeType mimeType() {
-      return JSON;
+   public String mimeType() {
+      return mimeType;
    }
 
    @Override
-   public int length() {
+   public long length() {
       return jsonBytes.length;
    }
 
