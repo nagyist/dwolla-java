@@ -1,8 +1,8 @@
 package com.dwolla.java.sdk;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.Scanner;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -11,6 +11,7 @@ import retrofit.http.Callback;
 import retrofit.http.Header;
 import retrofit.http.RetrofitError;
 import retrofit.http.client.Response;
+import retrofit.http.mime.TypedString;
 
 public abstract class DwollaCallback<T> implements Callback<T> {
    private Log log = LogFactory.getLog(DwollaCallback.class);
@@ -55,12 +56,10 @@ public abstract class DwollaCallback<T> implements Callback<T> {
          if (response.getBody() != null) {
             sb.append("\nBody: ");
             try {
-               BufferedReader br = new BufferedReader(new InputStreamReader(response.getBody().in()));
-               String line;
-               while ((line = br.readLine()) != null) {
-                  sb.append(line);
-               }
-               br.close();
+               Scanner s = new Scanner(response.getBody().in());
+               s.useDelimiter("\\A");
+               sb.append(s.hasNext() ? s.next() : "");
+               s.close();
             } catch (IOException e) {
                sb.append("Error parsing body");
             }
@@ -71,8 +70,8 @@ public abstract class DwollaCallback<T> implements Callback<T> {
       // Don't log since it may contain sensitive user information
    }
 
-   public void failure(String message) {
-      log.error(new StringBuilder("Dwolla API Failure: ").append(message).toString());
+   public void failure(String message, DwollaCallback<?> c) {
+      log.error(new StringBuilder("Dwolla API Failure - ").append(c.getClass().getName()).append(": ").append(message).toString());
    }
 
 }

@@ -68,7 +68,7 @@ public class DwollaCallbackTest {
    public void testFailureSetsLastError() {
       String reason = "reason";
       List<Header> headers = Arrays.asList(new Header("name1", "value1"), new Header("name2", "value2"));
-      String body = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<body>\n</body>\n</html>";
+      String body = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><body></body></html>";
       Response response = new Response(200, reason, headers, new TypedInputStream("application/json", body.length(), new ByteArrayInputStream(
             body.getBytes())));
       RetrofitError error = RetrofitError.conversionError("https://www.dwolla.com", response, new GsonConverter(new Gson()), null,
@@ -85,9 +85,9 @@ public class DwollaCallbackTest {
    public void testFailureLogsMessage() {
       String message = "message";
 
-      callback.failure(message);
+      callback.failure(message, new TestCallback());
 
-      verify(log).error(String.format("Dwolla API Failure: %s", message));
+      verify(log).error(String.format("Dwolla API Failure - com.dwolla.java.sdk.DwollaCallbackTest$TestCallback: %s", message));
    }
 
    private static class TypedInputStream implements TypedInput {
