@@ -14,10 +14,10 @@ public class SendRequest {
 
    /** Optional */
    public boolean assumeCosts = false;
-   public String destinationType = null; // See Constants.UserType
+   public String destinationType = null; // See Consts.UserType
    public String facilitatorAmount = null;
    public String notes = null;
-   public String fundsSource = null; // See Constants.FundingSource
+   public String fundsSource = null; // See Consts.FundingSource
    public AdditionalFee[] additionalFees = null;
 
    public SendRequest(String oauth_token, String pin, String destinationId, double amount) {

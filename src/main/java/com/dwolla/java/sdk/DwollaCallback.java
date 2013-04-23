@@ -1,7 +1,6 @@
 package com.dwolla.java.sdk;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
 import org.apache.commons.logging.Log;
@@ -11,7 +10,6 @@ import retrofit.http.Callback;
 import retrofit.http.Header;
 import retrofit.http.RetrofitError;
 import retrofit.http.client.Response;
-import retrofit.http.mime.TypedString;
 
 public abstract class DwollaCallback<T> implements Callback<T> {
    private Log log = LogFactory.getLog(DwollaCallback.class);

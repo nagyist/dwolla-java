@@ -31,6 +31,26 @@ public class Consts {
 
    }
 
+   public static class UserContactType {
+
+      public static final String DWOLLA = "Dwolla";
+      public static final String FACEBOOK = "Facebook";
+      public static final String TWITTER = "Twitter";
+      public static final String LINKED_IN = "LinkedIn";
+      public static final String FOURSQUARE = "Foursquare";
+
+   }
+
+   public static class TransactionType {
+
+      public static final String MONEY_SENT = "money_sent";
+      public static final String MONEY_RECEIVED = "money_received";
+      public static final String DEPOSIT = "deposit";
+      public static final String WITHDRAWAL = "withdrawal";
+      public static final String FEE = "fee";
+
+   }
+
    public static class FundingSource {
 
       public static final String BALANCE = "Balance";

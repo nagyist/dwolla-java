@@ -8,7 +8,7 @@ public class RequestRequest {
    public double amount;
 
    /** Optional */
-   public String sourceType = null; // See Constants.UserType
+   public String sourceType = null; // See Consts.UserType
    public String facilitatorAmount = null;
    public String notes = null;
 

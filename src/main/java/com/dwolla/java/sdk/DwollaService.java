@@ -32,6 +32,7 @@ public interface DwollaService {
          @Name(Consts.Api.LIMIT) int limit, Callback<NearbySpotsResponse> callback);
 
    @GET("/contacts/")
+   // For types, see Consts.UserContactType
    void getUserContacts(@Name(Consts.Api.TOKEN) String oauthToken, @Name(Consts.Api.SEARCH) String search, @Name(Consts.Api.TYPES) String types,
          @Name(Consts.Api.LIMIT) int limit, Callback<UserContactsResponse> callback);
 
@@ -49,6 +50,7 @@ public interface DwollaService {
 
    /** Transactions */
    @GET("/transactions/")
+// For types, see Consts.TransactionType
    void getTransactions(@Name(Consts.Api.TOKEN) String oauthToken, @Name(Consts.Api.CLIENT_ID) String clientId,
          @Name(Consts.Api.CLIENT_SECRET) String clientSecret, @Name(Consts.Api.SINCE_DATE) String sinceDate, @Name(Consts.Api.TYPES) String types,
          @Name(Consts.Api.LIMIT) int limit, @Name(Consts.Api.SKIP) int skip, @Name(Consts.Api.GROUP_ID) String groupId,
