@@ -9,6 +9,7 @@ import retrofit.http.SingleEntity;
 import com.dwolla.java.sdk.responses.AccountInformationResponse;
 import com.dwolla.java.sdk.responses.BalanceResponse;
 import com.dwolla.java.sdk.responses.BasicAccountInformationResponse;
+import com.dwolla.java.sdk.responses.DepositWithdrawResponse;
 import com.dwolla.java.sdk.responses.FundingSourcesByIdResponse;
 import com.dwolla.java.sdk.responses.FundingSourcesListingResponse;
 import com.dwolla.java.sdk.responses.NearbySpotsResponse;
@@ -44,13 +45,19 @@ public interface DwollaService {
    @GET("/fundingsources/")
    void getFundingSourcesListing(@Name(Consts.Api.TOKEN) String oauthToken, Callback<FundingSourcesListingResponse> callback);
 
+   @POST("/fundingsources/{funding_id}/deposit")
+   void deposit(@SingleEntity DwollaTypedBytes request, @Name(Consts.Api.FUNDING_ID) String funding_id, Callback<DepositWithdrawResponse> callback);
+
+   @POST("/fundingsources/{funding_id}/withdraw")
+   void withdraw(@SingleEntity DwollaTypedBytes request, @Name(Consts.Api.FUNDING_ID) String funding_id, Callback<DepositWithdrawResponse> callback);
+
    /** Requests */
    @POST("/requests/")
    void request(@SingleEntity DwollaTypedBytes request, Callback<RequestResponse> callback);
 
    /** Transactions */
    @GET("/transactions/")
-// For types, see Consts.TransactionType
+   // For types, see Consts.TransactionType
    void getTransactions(@Name(Consts.Api.TOKEN) String oauthToken, @Name(Consts.Api.CLIENT_ID) String clientId,
          @Name(Consts.Api.CLIENT_SECRET) String clientSecret, @Name(Consts.Api.SINCE_DATE) String sinceDate, @Name(Consts.Api.TYPES) String types,
          @Name(Consts.Api.LIMIT) int limit, @Name(Consts.Api.SKIP) int skip, @Name(Consts.Api.GROUP_ID) String groupId,

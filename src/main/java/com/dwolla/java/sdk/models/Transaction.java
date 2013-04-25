@@ -1,7 +1,5 @@
 package com.dwolla.java.sdk.models;
 
-import java.util.Arrays;
-
 public class Transaction {
 
    public int Id;
@@ -16,10 +14,9 @@ public class Transaction {
    public String ClearingDate;
    public String Status;
    public String Notes;
-   public Transaction[] Fees;
 
    public Transaction(int id, double amount, String date, String type, String userType, String destinationId, String destinationName,
-         String sourceId, String sourceName, String clearingDate, String status, String notes, Transaction[] fees) {
+         String sourceId, String sourceName, String clearingDate, String status, String notes) {
       super();
       Id = id;
       Amount = amount;
@@ -33,7 +30,6 @@ public class Transaction {
       ClearingDate = clearingDate;
       Status = status;
       Notes = notes;
-      Fees = fees;
    }
 
    @Override
@@ -47,7 +43,6 @@ public class Transaction {
       result = prime * result + ((Date == null) ? 0 : Date.hashCode());
       result = prime * result + ((DestinationId == null) ? 0 : DestinationId.hashCode());
       result = prime * result + ((DestinationName == null) ? 0 : DestinationName.hashCode());
-      result = prime * result + Arrays.hashCode(Fees);
       result = prime * result + Id;
       result = prime * result + ((Notes == null) ? 0 : Notes.hashCode());
       result = prime * result + ((SourceId == null) ? 0 : SourceId.hashCode());
@@ -88,8 +83,6 @@ public class Transaction {
          if (other.DestinationName != null)
             return false;
       } else if (!DestinationName.equals(other.DestinationName))
-         return false;
-      if (!Arrays.equals(Fees, other.Fees))
          return false;
       if (Id != other.Id)
          return false;

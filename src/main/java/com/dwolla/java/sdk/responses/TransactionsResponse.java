@@ -2,11 +2,11 @@ package com.dwolla.java.sdk.responses;
 
 import java.util.Arrays;
 
-import com.dwolla.java.sdk.models.Transaction;
+import com.dwolla.java.sdk.models.TransactionWithFees;
 
 public class TransactionsResponse extends Response {
 
-   public Transaction[] Response;
+   public TransactionWithFees[] Response;
 
    @Override
    public int hashCode() {
