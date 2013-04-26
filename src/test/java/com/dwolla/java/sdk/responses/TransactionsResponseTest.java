@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import com.dwolla.java.sdk.models.Transaction;
 import com.dwolla.java.sdk.models.TransactionWithFees;
+import com.dwolla.java.sdk.responses.TransactionsResponse;
 import com.google.gson.Gson;
 
 public class TransactionsResponseTest {

@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.dwolla.java.sdk.models.UserContact;
+import com.dwolla.java.sdk.responses.UserContactsResponse;
 import com.google.gson.Gson;
 
 public class UserContactsResponseTest {

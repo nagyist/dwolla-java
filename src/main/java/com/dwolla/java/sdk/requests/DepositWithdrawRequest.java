@@ -4,14 +4,12 @@ public class DepositWithdrawRequest {
 
    /** Required */
    public String oauth_token;
-   public String funding_id;
    public String pin;
    public double amount;
 
-   public DepositWithdrawRequest(String oauth_token, String funding_id, String pin, double amount) {
+   public DepositWithdrawRequest(String oauth_token, String pin, double amount) {
       super();
       this.oauth_token = oauth_token;
-      this.funding_id = funding_id;
       this.pin = pin;
       this.amount = amount;
    }
@@ -23,7 +21,6 @@ public class DepositWithdrawRequest {
       long temp;
       temp = Double.doubleToLongBits(amount);
       result = prime * result + (int) (temp ^ (temp >>> 32));
-      result = prime * result + ((funding_id == null) ? 0 : funding_id.hashCode());
       result = prime * result + ((oauth_token == null) ? 0 : oauth_token.hashCode());
       result = prime * result + ((pin == null) ? 0 : pin.hashCode());
       return result;
@@ -39,11 +36,6 @@ public class DepositWithdrawRequest {
          return false;
       DepositWithdrawRequest other = (DepositWithdrawRequest) obj;
       if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
-         return false;
-      if (funding_id == null) {
-         if (other.funding_id != null)
-            return false;
-      } else if (!funding_id.equals(other.funding_id))
          return false;
       if (oauth_token == null) {
          if (other.oauth_token != null)

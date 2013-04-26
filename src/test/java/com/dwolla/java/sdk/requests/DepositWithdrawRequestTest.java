@@ -26,11 +26,11 @@ public class DepositWithdrawRequestTest {
    }
 
    private DepositWithdrawRequest createRequestObject() {
-      return new DepositWithdrawRequest("123abc", "456", "1234", 1.11);
+      return new DepositWithdrawRequest("123abc", "1234", 1.11);
    }
 
    private String getJsonString(DepositWithdrawRequest obj) {
-      return "{\"oauth_token\":\"123abc\",\"funding_id\":\"456\",\"pin\":\"1234\",\"amount\":1.11}";
+      return "{\"oauth_token\":\"123abc\",\"pin\":\"1234\",\"amount\":1.11}";
    }
 
 }
