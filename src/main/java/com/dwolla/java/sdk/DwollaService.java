@@ -13,6 +13,7 @@ import com.dwolla.java.sdk.responses.DepositWithdrawResponse;
 import com.dwolla.java.sdk.responses.FundingSourcesByIdResponse;
 import com.dwolla.java.sdk.responses.FundingSourcesListingResponse;
 import com.dwolla.java.sdk.responses.NearbySpotsResponse;
+import com.dwolla.java.sdk.responses.NearbyUsersResponse;
 import com.dwolla.java.sdk.responses.RequestResponse;
 import com.dwolla.java.sdk.responses.SendResponse;
 import com.dwolla.java.sdk.responses.TransactionsResponse;
@@ -22,6 +23,7 @@ import com.dwolla.java.sdk.responses.UserContactsResponse;
  * Dwolla API endpoints, see <a href="https://developers.dwolla.com/dev/docs/">developers.dwolla.com/dev/docs</a> for more information.
  * */
 public interface DwollaService {
+
    /** Balance */
    @GET("/balance/")
    void getBalance(@Name(Consts.Api.TOKEN) String oauthToken, Callback<BalanceResponse> callback);
@@ -73,4 +75,9 @@ public interface DwollaService {
    @GET("/users/{account_identifier}")
    void getBasicAccountInformation(@Name(Consts.Api.ACCOUNT_ID) String accountIdentifier, @Name(Consts.Api.CLIENT_ID) String clientId,
          @Name(Consts.Api.CLIENT_SECRET) String clientSecret, Callback<BasicAccountInformationResponse> callback);
+
+   @GET("/users/nearby")
+   void getNearbyUsers(@Name(Consts.Api.CLIENT_ID) String clientId, @Name(Consts.Api.CLIENT_SECRET) String clientSecret,
+         @Name(Consts.Api.LATITUDE) double latitude, @Name(Consts.Api.LONGITUDE) double longitude, Callback<NearbyUsersResponse> callback);
+
 }
