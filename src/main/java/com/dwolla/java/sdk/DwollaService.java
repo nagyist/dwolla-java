@@ -14,6 +14,7 @@ import com.dwolla.java.sdk.responses.FundingSourcesByIdResponse;
 import com.dwolla.java.sdk.responses.FundingSourcesListingResponse;
 import com.dwolla.java.sdk.responses.NearbySpotsResponse;
 import com.dwolla.java.sdk.responses.NearbyUsersResponse;
+import com.dwolla.java.sdk.responses.PendingRequestsResponse;
 import com.dwolla.java.sdk.responses.RequestResponse;
 import com.dwolla.java.sdk.responses.SendResponse;
 import com.dwolla.java.sdk.responses.TransactionsResponse;
@@ -54,6 +55,9 @@ public interface DwollaService {
    void withdraw(@SingleEntity DwollaTypedBytes request, @Name(Consts.Api.FUNDING_ID) String funding_id, Callback<DepositWithdrawResponse> callback);
 
    /** Requests */
+   @GET("/requests/")
+   void getPendingRequests(@Name(Consts.Api.TOKEN) String oauthToken, Callback<PendingRequestsResponse> callback);
+   
    @POST("/requests/")
    void request(@SingleEntity DwollaTypedBytes request, Callback<RequestResponse> callback);
 

@@ -1,0 +1,73 @@
+package com.dwolla.java.sdk.models;
+
+public class PendingRequest {
+
+   public int Id;
+   public double Amount;
+   public String DateRequested;
+   public String Status;
+   public UserContact Source;
+   public UserContact Destination;
+
+   public PendingRequest(int id, double amount, String dateRequested, String status, UserContact source, UserContact destination) {
+      super();
+      Id = id;
+      Amount = amount;
+      DateRequested = dateRequested;
+      Status = status;
+      Source = source;
+      Destination = destination;
+   }
+
+   @Override
+   public int hashCode() {
+      final int prime = 31;
+      int result = 1;
+      long temp;
+      temp = Double.doubleToLongBits(Amount);
+      result = prime * result + (int) (temp ^ (temp >>> 32));
+      result = prime * result + ((DateRequested == null) ? 0 : DateRequested.hashCode());
+      result = prime * result + ((Destination == null) ? 0 : Destination.hashCode());
+      result = prime * result + Id;
+      result = prime * result + ((Source == null) ? 0 : Source.hashCode());
+      result = prime * result + ((Status == null) ? 0 : Status.hashCode());
+      return result;
+   }
+
+   @Override
+   public boolean equals(Object obj) {
+      if (this == obj)
+         return true;
+      if (obj == null)
+         return false;
+      if (getClass() != obj.getClass())
+         return false;
+      PendingRequest other = (PendingRequest) obj;
+      if (Double.doubleToLongBits(Amount) != Double.doubleToLongBits(other.Amount))
+         return false;
+      if (DateRequested == null) {
+         if (other.DateRequested != null)
+            return false;
+      } else if (!DateRequested.equals(other.DateRequested))
+         return false;
+      if (Destination == null) {
+         if (other.Destination != null)
+            return false;
+      } else if (!Destination.equals(other.Destination))
+         return false;
+      if (Id != other.Id)
+         return false;
+      if (Source == null) {
+         if (other.Source != null)
+            return false;
+      } else if (!Source.equals(other.Source))
+         return false;
+      if (Status == null) {
+         if (other.Status != null)
+            return false;
+      } else if (!Status.equals(other.Status))
+         return false;
+      return true;
+   }
+
+}
