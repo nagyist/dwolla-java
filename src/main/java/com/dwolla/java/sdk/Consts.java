@@ -14,6 +14,7 @@ public class Consts {
       public static final String SEARCH = "search";
       public static final String TYPES = "types";
       public static final String FUNDING_ID = "funding_id";
+      public static final String REQUEST_ID = "request_id";
       public static final String SINCE_DATE = "since_date";
       public static final String SKIP = "skip";
       public static final String GROUP_ID = "group_id";

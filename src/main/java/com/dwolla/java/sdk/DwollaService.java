@@ -10,6 +10,7 @@ import com.dwolla.java.sdk.responses.AccountInformationResponse;
 import com.dwolla.java.sdk.responses.BalanceResponse;
 import com.dwolla.java.sdk.responses.BasicAccountInformationResponse;
 import com.dwolla.java.sdk.responses.DepositWithdrawResponse;
+import com.dwolla.java.sdk.responses.FulfillRequestResponse;
 import com.dwolla.java.sdk.responses.FundingSourcesByIdResponse;
 import com.dwolla.java.sdk.responses.FundingSourcesListingResponse;
 import com.dwolla.java.sdk.responses.NearbySpotsResponse;
@@ -57,7 +58,10 @@ public interface DwollaService {
    /** Requests */
    @GET("/requests/")
    void getPendingRequests(@Name(Consts.Api.TOKEN) String oauthToken, Callback<PendingRequestsResponse> callback);
-   
+
+   @POST("/requests/{request_id}/fulfill")
+   void fulfillRequest(@SingleEntity DwollaTypedBytes request, @Name(Consts.Api.REQUEST_ID) String request_id, Callback<FulfillRequestResponse> callback);
+
    @POST("/requests/")
    void request(@SingleEntity DwollaTypedBytes request, Callback<RequestResponse> callback);
 
