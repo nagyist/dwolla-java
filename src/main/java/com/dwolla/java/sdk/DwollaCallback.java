@@ -27,7 +27,7 @@ public abstract class DwollaCallback<T> implements Callback<T> {
       }
    }
 
-   protected String formatErrorMessage(RetrofitError error) {
+   public String formatErrorMessage(RetrofitError error) {
       Response response = error.getResponse();
       StringBuilder sb = new StringBuilder("Retrofit failure:\nUrl: ").append(error.getUrl());
 

@@ -60,7 +60,7 @@ public class DwollaCallbackTest {
       try {
          callback.failure(error);
       } catch (Exception e) {
-         Assert.fail("Unexpected execption thrown");
+         Assert.fail("Unexpected exception thrown");
       }
    }
 
@@ -74,11 +74,9 @@ public class DwollaCallbackTest {
       RetrofitError error = RetrofitError.conversionError("https://www.dwolla.com", response, new GsonConverter(new Gson()), null,
             new ConversionException("message"));
 
-      callback.failure(error);
-
       Assert.assertEquals(
             "Retrofit failure:\nUrl: https://www.dwolla.com\nisNetworkError: false\nMessage: retrofit.http.ConversionException: message\nCause: retrofit.http.ConversionException: message\nStatus code: 200\nReason: reason\nHeaders:\nname1: value1\nname2: value2\nBody: <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><body></body></html>",
-            callback.mLastFailure);
+            callback.formatErrorMessage(error));
    }
 
    @Test
@@ -125,7 +123,6 @@ public class DwollaCallbackTest {
 
       @Override
       public void failure(RetrofitError error) {
-         super.failure(error);
       }
    }
 }
