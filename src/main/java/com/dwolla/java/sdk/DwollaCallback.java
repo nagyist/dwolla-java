@@ -13,7 +13,6 @@ import retrofit.http.client.Response;
 
 public abstract class DwollaCallback<T> implements Callback<T> {
    private Log log = LogFactory.getLog(DwollaCallback.class);
-   protected String mLastFailure = "";
 
    public void setLog(Log log) {
       if (log != null) {
@@ -24,12 +23,11 @@ public abstract class DwollaCallback<T> implements Callback<T> {
    @Override
    public void success(T t, Response response) {
       if (t != null) {
-         log.info(new StringBuilder("Retrofit success: ").append(t.getClass().getName()).toString());
+         log.info("Retrofit success: " + t.getClass().getName());
       }
    }
 
-   @Override
-   public void failure(RetrofitError error) {
+   protected String formatErrorMessage(RetrofitError error) {
       Response response = error.getResponse();
       StringBuilder sb = new StringBuilder("Retrofit failure:\nUrl: ").append(error.getUrl());
 
@@ -64,12 +62,11 @@ public abstract class DwollaCallback<T> implements Callback<T> {
          }
       }
 
-      mLastFailure = sb.toString();
-      // Don't log since it may contain sensitive user information
+      return sb.toString();
    }
 
    public void failure(String message, DwollaCallback<?> c) {
-      log.error(new StringBuilder("Dwolla API Failure - ").append(c.getClass().getName()).append(": ").append(message).toString());
+      log.error("Dwolla API Failure - " + c.getClass().getName() + ": " + message);
    }
 
 }
