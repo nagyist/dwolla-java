@@ -28,6 +28,9 @@ public class NearbySpot {
       PostalCode = postalCode;
    }
 
+   private NearbySpot() {
+   }
+
    @Override
    public int hashCode() {
       final int prime = 31;

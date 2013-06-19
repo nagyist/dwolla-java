@@ -13,6 +13,9 @@ public class AccountInformation extends BasicAccountInformation {
       Type = type;
    }
 
+   private AccountInformation() {
+   }
+
    @Override
    public int hashCode() {
       final int prime = 31;

@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 
-import retrofit.http.mime.TypedOutput;
-
 import com.google.gson.Gson;
+
+import retrofit.mime.TypedOutput;
 
 public class DwollaTypedBytes implements TypedOutput {
 
@@ -20,6 +20,11 @@ public class DwollaTypedBytes implements TypedOutput {
       } catch (UnsupportedEncodingException e) {
          throw new IllegalStateException(UTF_8 + " encoding does not exist.");
       }
+   }
+
+   @Override
+   public String fileName() {
+      return "DwollaTypedBytesFileName";
    }
 
    @Override

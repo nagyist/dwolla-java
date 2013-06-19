@@ -1,15 +1,15 @@
 package com.dwolla.java.sdk;
 
-import java.io.IOException;
-import java.util.Scanner;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import retrofit.http.Callback;
-import retrofit.http.Header;
-import retrofit.http.RetrofitError;
-import retrofit.http.client.Response;
+import java.io.IOException;
+import java.util.Scanner;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Header;
+import retrofit.client.Response;
 
 public abstract class DwollaCallback<T> implements Callback<T> {
    private Log log = LogFactory.getLog(DwollaCallback.class);

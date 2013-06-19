@@ -19,6 +19,9 @@ public class NearbyUser {
       Delta = delta;
    }
 
+   private NearbyUser() {
+   }
+
    @Override
    public int hashCode() {
       final int prime = 31;

@@ -9,6 +9,9 @@ public class PendingRequest extends Request {
       DateRequested = dateRequested;
    }
 
+   private PendingRequest() {
+   }
+
    @Override
    public int hashCode() {
       final int prime = 31;

@@ -1,11 +1,5 @@
 package com.dwolla.java.sdk;
 
-import retrofit.http.Callback;
-import retrofit.http.GET;
-import retrofit.http.Name;
-import retrofit.http.POST;
-import retrofit.http.SingleEntity;
-
 import com.dwolla.java.sdk.responses.AccountInformationResponse;
 import com.dwolla.java.sdk.responses.BalanceResponse;
 import com.dwolla.java.sdk.responses.BasicAccountInformationResponse;
@@ -21,71 +15,95 @@ import com.dwolla.java.sdk.responses.SendResponse;
 import com.dwolla.java.sdk.responses.TransactionsResponse;
 import com.dwolla.java.sdk.responses.UserContactsResponse;
 
+import retrofit.Callback;
+import retrofit.http.Body;
+import retrofit.http.GET;
+import retrofit.http.POST;
+import retrofit.http.Path;
+import retrofit.http.Query;
+
 /**
  * Dwolla API endpoints, see <a href="https://developers.dwolla.com/dev/docs/">developers.dwolla.com/dev/docs</a> for more information.
- * */
+ */
+@SuppressWarnings("UnusedDeclaration")
 public interface DwollaService {
 
-   /** Balance */
+   /**
+    * Balance
+    */
    @GET("/balance/")
-   void getBalance(@Name(Consts.Api.TOKEN) String oauthToken, Callback<BalanceResponse> callback);
+   void getBalance(@Query(Consts.Api.TOKEN) String oauthToken, Callback<BalanceResponse> callback);
 
-   /** Contacts */
+   /**
+    * Contacts
+    */
    @GET("/contacts/nearby")
-   void getNearbySpots(@Name(Consts.Api.CLIENT_ID) String clientId, @Name(Consts.Api.CLIENT_SECRET) String clientSecret,
-         @Name(Consts.Api.LATITUDE) double latitude, @Name(Consts.Api.LONGITUDE) double longitude, @Name(Consts.Api.RANGE) int range,
-         @Name(Consts.Api.LIMIT) int limit, Callback<NearbySpotsResponse> callback);
+   void getNearbySpots(@Query(Consts.Api.CLIENT_ID) String clientId, @Query(Consts.Api.CLIENT_SECRET) String clientSecret,
+                       @Query(Consts.Api.LATITUDE) double latitude, @Query(Consts.Api.LONGITUDE) double longitude,
+                       @Query(Consts.Api.RANGE) int range, @Query(Consts.Api.LIMIT) int limit, Callback<NearbySpotsResponse> callback);
 
    @GET("/contacts/")
-   // For types, see Consts.UserContactType
-   void getUserContacts(@Name(Consts.Api.TOKEN) String oauthToken, @Name(Consts.Api.SEARCH) String search, @Name(Consts.Api.TYPES) String types,
-         @Name(Consts.Api.LIMIT) int limit, Callback<UserContactsResponse> callback);
+      // For types, see Consts.UserContactType
+   void getUserContacts(@Query(Consts.Api.TOKEN) String oauthToken, @Query(Consts.Api.SEARCH) String search,
+                        @Query(Consts.Api.TYPES) String types, @Query(Consts.Api.LIMIT) int limit, Callback<UserContactsResponse> callback);
 
-   /** Funding Sources */
+   /**
+    * Funding Sources
+    */
    @GET("/fundingsources/{funding_id}/")
-   void getFundingSourcesById(@Name(Consts.Api.TOKEN) String oauthToken, @Name(Consts.Api.FUNDING_ID) String funding_id,
-         Callback<FundingSourcesByIdResponse> callback);
+   void getFundingSourcesById(@Query(Consts.Api.TOKEN) String oauthToken, @Path(Consts.Api.FUNDING_ID) String funding_id,
+                              Callback<FundingSourcesByIdResponse> callback);
 
    @GET("/fundingsources/")
-   void getFundingSourcesListing(@Name(Consts.Api.TOKEN) String oauthToken, Callback<FundingSourcesListingResponse> callback);
+   void getFundingSourcesListing(@Query(Consts.Api.TOKEN) String oauthToken, Callback<FundingSourcesListingResponse> callback);
 
    @POST("/fundingsources/{funding_id}/deposit")
-   void deposit(@SingleEntity DwollaTypedBytes request, @Name(Consts.Api.FUNDING_ID) String funding_id, Callback<DepositWithdrawResponse> callback);
+   void deposit(@Body DwollaTypedBytes request, @Path(Consts.Api.FUNDING_ID) String funding_id,
+                Callback<DepositWithdrawResponse> callback);
 
    @POST("/fundingsources/{funding_id}/withdraw")
-   void withdraw(@SingleEntity DwollaTypedBytes request, @Name(Consts.Api.FUNDING_ID) String funding_id, Callback<DepositWithdrawResponse> callback);
+   void withdraw(@Body DwollaTypedBytes request, @Path(Consts.Api.FUNDING_ID) String funding_id,
+                 Callback<DepositWithdrawResponse> callback);
 
-   /** Requests */
+   /**
+    * Requests
+    */
    @GET("/requests/")
-   void getPendingRequests(@Name(Consts.Api.TOKEN) String oauthToken, Callback<PendingRequestsResponse> callback);
+   void getPendingRequests(@Query(Consts.Api.TOKEN) String oauthToken, Callback<PendingRequestsResponse> callback);
 
    @POST("/requests/{request_id}/fulfill")
-   void fulfillRequest(@SingleEntity DwollaTypedBytes request, @Name(Consts.Api.REQUEST_ID) String request_id, Callback<FulfillRequestResponse> callback);
+   void fulfillRequest(@Body DwollaTypedBytes request, @Path(Consts.Api.REQUEST_ID) String request_id,
+                       Callback<FulfillRequestResponse> callback);
 
    @POST("/requests/")
-   void request(@SingleEntity DwollaTypedBytes request, Callback<RequestResponse> callback);
+   void request(@Body DwollaTypedBytes request, Callback<RequestResponse> callback);
 
-   /** Transactions */
+   /**
+    * Transactions
+    */
    @GET("/transactions/")
    // For types, see Consts.TransactionType
-   void getTransactions(@Name(Consts.Api.TOKEN) String oauthToken, @Name(Consts.Api.CLIENT_ID) String clientId,
-         @Name(Consts.Api.CLIENT_SECRET) String clientSecret, @Name(Consts.Api.SINCE_DATE) String sinceDate, @Name(Consts.Api.TYPES) String types,
-         @Name(Consts.Api.LIMIT) int limit, @Name(Consts.Api.SKIP) int skip, @Name(Consts.Api.GROUP_ID) String groupId,
-         Callback<TransactionsResponse> callback);
+   void getTransactions(@Query(Consts.Api.TOKEN) String oauthToken, @Query(Consts.Api.CLIENT_ID) String clientId,
+                        @Query(Consts.Api.CLIENT_SECRET) String clientSecret, @Query(Consts.Api.SINCE_DATE) String sinceDate,
+                        @Query(Consts.Api.TYPES) String types, @Query(Consts.Api.LIMIT) int limit,
+                        @Query(Consts.Api.SKIP) int skip, @Query(Consts.Api.GROUP_ID) String groupId, Callback<TransactionsResponse> callback);
 
    @POST("/transactions/send")
-   void send(@SingleEntity DwollaTypedBytes request, Callback<SendResponse> callback);
+   void send(@Body DwollaTypedBytes request, Callback<SendResponse> callback);
 
-   /** Users */
+   /**
+    * Users
+    */
    @GET("/users/")
-   void getAccountInformation(@Name(Consts.Api.TOKEN) String oauthToken, Callback<AccountInformationResponse> callback);
+   void getAccountInformation(@Query(Consts.Api.TOKEN) String oauthToken, Callback<AccountInformationResponse> callback);
 
    @GET("/users/{account_identifier}")
-   void getBasicAccountInformation(@Name(Consts.Api.ACCOUNT_ID) String accountIdentifier, @Name(Consts.Api.CLIENT_ID) String clientId,
-         @Name(Consts.Api.CLIENT_SECRET) String clientSecret, Callback<BasicAccountInformationResponse> callback);
+   void getBasicAccountInformation(@Path(Consts.Api.ACCOUNT_ID) String accountIdentifier, @Query(Consts.Api.CLIENT_ID) String clientId,
+                                   @Query(Consts.Api.CLIENT_SECRET) String clientSecret, Callback<BasicAccountInformationResponse> callback);
 
    @GET("/users/nearby")
-   void getNearbyUsers(@Name(Consts.Api.CLIENT_ID) String clientId, @Name(Consts.Api.CLIENT_SECRET) String clientSecret,
-         @Name(Consts.Api.LATITUDE) double latitude, @Name(Consts.Api.LONGITUDE) double longitude, Callback<NearbyUsersResponse> callback);
+   void getNearbyUsers(@Query(Consts.Api.CLIENT_ID) String clientId, @Query(Consts.Api.CLIENT_SECRET) String clientSecret,
+                       @Query(Consts.Api.LATITUDE) double latitude, @Query(Consts.Api.LONGITUDE) double longitude,
+                       Callback<NearbyUsersResponse> callback);
 
 }

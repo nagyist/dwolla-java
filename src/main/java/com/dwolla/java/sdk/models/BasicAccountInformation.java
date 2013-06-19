@@ -15,6 +15,9 @@ public class BasicAccountInformation {
       Longitude = longitude;
    }
 
+   protected BasicAccountInformation() {
+   }
+
    @Override
    public int hashCode() {
       final int prime = 31;

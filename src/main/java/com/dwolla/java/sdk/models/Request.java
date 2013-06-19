@@ -17,6 +17,9 @@ public class Request {
       Destination = destination;
    }
 
+   protected Request() {
+   }
+
    @Override
    public int hashCode() {
       final int prime = 31;

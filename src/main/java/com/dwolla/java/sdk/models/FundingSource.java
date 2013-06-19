@@ -9,6 +9,9 @@ public class FundingSource extends BasicFundingSource {
       Balance = balance;
    }
 
+   private FundingSource() {
+   }
+
    @Override
    public int hashCode() {
       final int prime = 31;

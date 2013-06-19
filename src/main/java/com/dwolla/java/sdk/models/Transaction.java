@@ -32,6 +32,9 @@ public class Transaction {
       Notes = notes;
    }
 
+   protected Transaction() {
+   }
+
    @Override
    public int hashCode() {
       final int prime = 31;

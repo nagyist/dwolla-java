@@ -12,6 +12,9 @@ public class TransactionWithFees extends Transaction {
       Fees = fees;
    }
 
+   private TransactionWithFees() {
+   }
+
    @Override
    public int hashCode() {
       final int prime = 31;

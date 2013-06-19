@@ -17,6 +17,9 @@ public class BasicFundingSource {
       ProcessingType = processingType;
    }
 
+   protected BasicFundingSource() {
+   }
+
    @Override
    public int hashCode() {
       final int prime = 31;

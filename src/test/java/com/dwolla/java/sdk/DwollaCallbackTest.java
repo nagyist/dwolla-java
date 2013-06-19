@@ -1,7 +1,12 @@
 package com.dwolla.java.sdk;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import com.dwolla.java.sdk.responses.BalanceResponse;
+import com.google.gson.Gson;
+
+import org.apache.commons.logging.Log;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -9,20 +14,15 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import retrofit.RetrofitError;
+import retrofit.client.Header;
+import retrofit.client.Response;
+import retrofit.converter.ConversionException;
+import retrofit.converter.GsonConverter;
+import retrofit.mime.TypedInput;
 
-import retrofit.http.ConversionException;
-import retrofit.http.GsonConverter;
-import retrofit.http.Header;
-import retrofit.http.RetrofitError;
-import retrofit.http.client.Response;
-import retrofit.http.mime.TypedInput;
-
-import com.dwolla.java.sdk.responses.BalanceResponse;
-import com.google.gson.Gson;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class DwollaCallbackTest {
    private DwollaCallback<BalanceResponse> callback;
@@ -75,7 +75,7 @@ public class DwollaCallbackTest {
             new ConversionException("message"));
 
       Assert.assertEquals(
-            "Retrofit failure:\nUrl: https://www.dwolla.com\nisNetworkError: false\nMessage: retrofit.http.ConversionException: message\nCause: retrofit.http.ConversionException: message\nStatus code: 200\nReason: reason\nHeaders:\nname1: value1\nname2: value2\nBody: <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><body></body></html>",
+            "Retrofit failure:\nUrl: https://www.dwolla.com\nisNetworkError: false\nMessage: retrofit.converter.ConversionException: message\nCause: retrofit.converter.ConversionException: message\nStatus code: 200\nReason: reason\nHeaders:\nname1: value1\nname2: value2\nBody: <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><body></body></html>",
             callback.formatErrorMessage(error));
    }
 

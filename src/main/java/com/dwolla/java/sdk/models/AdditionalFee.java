@@ -11,6 +11,9 @@ public class AdditionalFee {
       this.amount = amount;
    }
 
+   private AdditionalFee() {
+   }
+
    @Override
    public int hashCode() {
       final int prime = 31;
