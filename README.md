@@ -1,4 +1,4 @@
-# `dwolla-java-sdk v1.0`
+# `dwolla-java-sdk v1.0.1`
 
 [![Build Status](https://travis-ci.org/therockstorm/dwolla-java-sdk.png?branch=master)](https://travis-ci.org/therockstorm/dwolla-java-sdk)
 
@@ -29,12 +29,12 @@ Then create the service and make the API call:
 ```java
 DwollaService service = new RestAdapter.Builder().setServer(
    new Server("https://www.dwolla.com/oauth/rest")).build().create(DwollaService.class);
-service.getBasicAccountInformation(accountId, mEncodedKey, mEncodedSecret, 
+service.getBasicAccountInformation(accountId, mEncodedKey, mEncodedSecret,
    new BasicInformationCallback());
 ```
 Post requests are just as simple. After creating a callback and DwollaService as shown above, make the API call:
 ```java
-service.send(new DwollaTypedBytes(new Gson(), 
+service.send(new DwollaTypedBytes(new Gson(),
    new SendRequest(mToken, pin, destinationId, amount)), new SendCallback());
 ```
 
