@@ -50,7 +50,7 @@ public interface DwollaService {
    /**
     * Funding Sources
     */
-   @GET("/fundingsources/{funding_id}/")
+   @GET("/fundingsources/{funding_id}")
    void getFundingSourcesById(@Query(Consts.Api.TOKEN) String oauthToken, @Path(Consts.Api.FUNDING_ID) String funding_id,
                               Callback<FundingSourcesByIdResponse> callback);
 

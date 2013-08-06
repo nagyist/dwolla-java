@@ -6,7 +6,7 @@ The [Dwolla API](http://developers.dwolla.com/dev) wrapper for Java and Android.
 
 ## Quick Start
 
-This wrapper uses the [Retrofit](https://github.com/square/retrofit) REST client. You must use my forked version [here](https://github.com/therockstorm/retrofit). See the [DwollaService](https://github.com/therockstorm/dwolla-java-sdk/blob/master/src/main/java/com/dwolla/java/sdk/DwollaService.java) class for the supported endpoints and Retrofit's [sample](https://github.com/square/retrofit/blob/master/samples/twitter-client/src/main/java/com/squareup/retrofit/sample/twitter/Client.java) for more details.
+This wrapper uses the [Retrofit](https://github.com/square/retrofit) REST client. See the [DwollaService](https://github.com/therockstorm/dwolla-java-sdk/blob/master/src/main/java/com/dwolla/java/sdk/DwollaService.java) class for the supported endpoints and Retrofit's [sample](https://github.com/square/retrofit/blob/master/samples/twitter-client/src/main/java/com/squareup/retrofit/sample/twitter/Client.java) for more details.
 
 Create a callback that extends DwollaCallback with the correct Response object:
 ```java
