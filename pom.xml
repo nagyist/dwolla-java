@@ -2,14 +2,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
-  <groupId>com.dwolla.java.sdk</groupId>
+  <groupId>com.dwolla</groupId>
   <artifactId>dwolla-java-sdk</artifactId>
-  <packaging>jar</packaging>
   <version>1.1.0</version>
+  <packaging>jar</packaging>
+
   <name>dwolla-java-sdk</name>
   <description>Dwolla's Java and Android SDK</description>
   <url>https://developers.dwolla.com/dev</url>
+
+  <licenses>
+    <license>
+      <name>The MIT License (MIT)</name>
+      <url>http://opensource.org/licenses/mit-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  
+  <scm>
+    <url>https://github.com/Dwolla/dwolla-java</url>
+  </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
