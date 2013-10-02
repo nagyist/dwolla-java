@@ -32,7 +32,7 @@ public class Transaction {
       Notes = notes;
    }
 
-   protected Transaction() {
+   public Transaction() {
    }
 
    @Override

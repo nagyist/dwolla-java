@@ -17,7 +17,7 @@ public class Request {
       Destination = destination;
    }
 
-   protected Request() {
+   public Request() {
    }
 
    @Override

@@ -12,7 +12,7 @@ public class TransactionWithFees extends Transaction {
       Fees = fees;
    }
 
-   private TransactionWithFees() {
+   public TransactionWithFees() {
    }
 
    @Override

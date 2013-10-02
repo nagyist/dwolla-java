@@ -9,7 +9,7 @@ public class PendingRequest extends Request {
       DateRequested = dateRequested;
    }
 
-   private PendingRequest() {
+   public PendingRequest() {
    }
 
    @Override

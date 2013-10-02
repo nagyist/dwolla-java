@@ -15,7 +15,7 @@ public class BasicAccountInformation {
       Longitude = longitude;
    }
 
-   protected BasicAccountInformation() {
+   public BasicAccountInformation() {
    }
 
    @Override

@@ -15,7 +15,7 @@ public class UserContact {
       Image = image;
    }
 
-   private UserContact() {
+   public UserContact() {
    }
 
    @Override

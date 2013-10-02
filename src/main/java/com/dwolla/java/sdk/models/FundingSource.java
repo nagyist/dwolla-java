@@ -9,7 +9,7 @@ public class FundingSource extends BasicFundingSource {
       Balance = balance;
    }
 
-   private FundingSource() {
+   public FundingSource() {
    }
 
    @Override

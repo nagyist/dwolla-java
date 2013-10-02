@@ -19,7 +19,7 @@ public class NearbyUser {
       Delta = delta;
    }
 
-   private NearbyUser() {
+   public NearbyUser() {
    }
 
    @Override

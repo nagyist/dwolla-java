@@ -17,7 +17,7 @@ public class BasicFundingSource {
       ProcessingType = processingType;
    }
 
-   protected BasicFundingSource() {
+   public BasicFundingSource() {
    }
 
    @Override

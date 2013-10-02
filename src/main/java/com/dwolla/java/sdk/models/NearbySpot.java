@@ -28,7 +28,7 @@ public class NearbySpot {
       PostalCode = postalCode;
    }
 
-   private NearbySpot() {
+   public NearbySpot() {
    }
 
    @Override

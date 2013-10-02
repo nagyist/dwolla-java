@@ -14,7 +14,7 @@ public class FulfillRequest extends Request {
       ClearingDate = clearingDate;
    }
 
-   private FulfillRequest() {
+   public FulfillRequest() {
    }
 
    @Override

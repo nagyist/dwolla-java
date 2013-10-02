@@ -13,7 +13,7 @@ public class AccountInformation extends BasicAccountInformation {
       Type = type;
    }
 
-   private AccountInformation() {
+   public AccountInformation() {
    }
 
    @Override

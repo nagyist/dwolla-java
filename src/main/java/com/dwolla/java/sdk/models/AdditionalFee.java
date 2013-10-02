@@ -11,7 +11,7 @@ public class AdditionalFee {
       this.amount = amount;
    }
 
-   private AdditionalFee() {
+   public AdditionalFee() {
    }
 
    @Override
