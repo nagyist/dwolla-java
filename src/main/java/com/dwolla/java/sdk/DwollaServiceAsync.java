@@ -1,19 +1,6 @@
 package com.dwolla.java.sdk;
 
-import com.dwolla.java.sdk.responses.AccountInformationResponse;
-import com.dwolla.java.sdk.responses.BalanceResponse;
-import com.dwolla.java.sdk.responses.BasicAccountInformationResponse;
-import com.dwolla.java.sdk.responses.DepositWithdrawResponse;
-import com.dwolla.java.sdk.responses.FulfillRequestResponse;
-import com.dwolla.java.sdk.responses.FundingSourcesByIdResponse;
-import com.dwolla.java.sdk.responses.FundingSourcesListingResponse;
-import com.dwolla.java.sdk.responses.NearbySpotsResponse;
-import com.dwolla.java.sdk.responses.NearbyUsersResponse;
-import com.dwolla.java.sdk.responses.PendingRequestsResponse;
-import com.dwolla.java.sdk.responses.RequestResponse;
-import com.dwolla.java.sdk.responses.SendResponse;
-import com.dwolla.java.sdk.responses.TransactionsResponse;
-import com.dwolla.java.sdk.responses.UserContactsResponse;
+import com.dwolla.java.sdk.responses.*;
 
 import retrofit.Callback;
 import retrofit.http.Body;
@@ -87,6 +74,9 @@ public interface DwollaServiceAsync {
                         @Query(Consts.Api.CLIENT_SECRET) String clientSecret, @Query(Consts.Api.SINCE_DATE) String sinceDate,
                         @Query(Consts.Api.TYPES) String types, @Query(Consts.Api.LIMIT) int limit,
                         @Query(Consts.Api.SKIP) int skip, @Query(Consts.Api.GROUP_ID) String groupId, Callback<TransactionsResponse> callback);
+
+    @GET("/transactions/{transaction_id}")
+    void getTransaction(@Query(Consts.Api.TOKEN) String oauthToken, @Path(Consts.Api.TRANSACTION_ID) String transaction_id, Callback<TransactionResponse> callback);
 
    @POST("/transactions/send")
    void send(@Body DwollaTypedBytes request, Callback<SendResponse> callback);
