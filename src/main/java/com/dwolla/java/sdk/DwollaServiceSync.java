@@ -73,7 +73,6 @@ public interface DwollaServiceSync {
     @GET("/transactions/{transaction_id}")
     TransactionResponse getTransaction(@Query(Consts.Api.TOKEN) String oauthToken, @Path(Consts.Api.TRANSACTION_ID) String transaction_id);
 
-
     @POST("/transactions/send")
     SendResponse send(@Body DwollaTypedBytes request);
 

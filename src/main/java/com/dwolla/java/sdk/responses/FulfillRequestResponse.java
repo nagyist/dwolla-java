@@ -4,31 +4,31 @@ import com.dwolla.java.sdk.models.FulfillRequest;
 
 public class FulfillRequestResponse extends Response {
 
-   public FulfillRequest Response;
+    public FulfillRequest Response;
 
-   @Override
-   public int hashCode() {
-      final int prime = 31;
-      int result = super.hashCode();
-      result = prime * result + ((Response == null) ? 0 : Response.hashCode());
-      return result;
-   }
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((Response == null) ? 0 : Response.hashCode());
+        return result;
+    }
 
-   @Override
-   public boolean equals(Object obj) {
-      if (this == obj)
-         return true;
-      if (!super.equals(obj))
-         return false;
-      if (getClass() != obj.getClass())
-         return false;
-      FulfillRequestResponse other = (FulfillRequestResponse) obj;
-      if (Response == null) {
-         if (other.Response != null)
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
             return false;
-      } else if (!Response.equals(other.Response))
-         return false;
-      return true;
-   }
+        if (getClass() != obj.getClass())
+            return false;
+        FulfillRequestResponse other = (FulfillRequestResponse) obj;
+        if (Response == null) {
+            if (other.Response != null)
+                return false;
+        } else if (!Response.equals(other.Response))
+            return false;
+        return true;
+    }
 
 }

@@ -1,4 +1,4 @@
-# `dwolla-java-sdk v1.1.1`
+# `dwolla-java-sdk v1.1.2`
 
 [![Build Status](https://travis-ci.org/therockstorm/dwolla-java-sdk.png?branch=master)](https://travis-ci.org/therockstorm/dwolla-java-sdk)
 

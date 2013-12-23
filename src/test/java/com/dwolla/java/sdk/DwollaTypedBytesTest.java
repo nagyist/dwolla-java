@@ -1,52 +1,51 @@
 package com.dwolla.java.sdk;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.dwolla.java.sdk.requests.SendRequest;
 import com.dwolla.java.sdk.responses.BalanceResponse;
 import com.google.gson.Gson;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 public class DwollaTypedBytesTest {
 
-   @Test
-   public void testUtf8StaticVariable() {
-      Assert.assertEquals("UTF-8", DwollaTypedBytes.UTF_8);
-   }
+    @Test
+    public void testUtf8StaticVariable() {
+        Assert.assertEquals("UTF-8", DwollaTypedBytes.UTF_8);
+    }
 
-   @Test
-   public void testMimeTypeReturnsJson() {
-      String expectedMime = "application/json";
+    @Test
+    public void testMimeTypeReturnsJson() {
+        String expectedMime = "application/json";
 
-      DwollaTypedBytes actual = new DwollaTypedBytes(new Gson(), new BalanceResponse());
+        DwollaTypedBytes actual = new DwollaTypedBytes(new Gson(), new BalanceResponse());
 
-      Assert.assertEquals(expectedMime, actual.mimeType());
-   }
+        Assert.assertEquals(expectedMime, actual.mimeType());
+    }
 
-   @Test
-   public void testLengthReturnsExpectedLength() {
-      Assert.assertEquals(102, new DwollaTypedBytes(new Gson(), createRequest()).length());
-   }
+    @Test
+    public void testLengthReturnsExpectedLength() {
+        Assert.assertEquals(102, new DwollaTypedBytes(new Gson(), createRequest()).length());
+    }
 
-   @Test
-   public void testWriteToReturnsExpectedStream() {
-      SendRequest expected = createRequest();
-      ByteArrayOutputStream out = new ByteArrayOutputStream();
+    @Test
+    public void testWriteToReturnsExpectedStream() {
+        SendRequest expected = createRequest();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-      try {
-         new DwollaTypedBytes(new Gson(), expected).writeTo(out);
-      } catch (IOException e) {
-         Assert.fail("Unexpected execption thrown");
-      }
+        try {
+            new DwollaTypedBytes(new Gson(), expected).writeTo(out);
+        } catch (IOException e) {
+            Assert.fail("Unexpected execption thrown");
+        }
 
-      Assert.assertEquals("{\"oauth_token\":\"123abc\",\"pin\":\"1234\",\"destinationId\":\"812-000-0000\",\"amount\":0.01,\"assumeCosts\":false}",
-            out.toString());
-   }
+        Assert.assertEquals("{\"oauth_token\":\"123abc\",\"pin\":\"1234\",\"destinationId\":\"812-000-0000\",\"amount\":0.01,\"assumeCosts\":false}",
+                out.toString());
+    }
 
-   private SendRequest createRequest() {
-      return new SendRequest("123abc", "1234", "812-000-0000", 0.01);
-   }
+    private SendRequest createRequest() {
+        return new SendRequest("123abc", "1234", "812-000-0000", 0.01);
+    }
 }
