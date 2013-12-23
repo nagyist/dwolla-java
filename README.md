@@ -1,4 +1,4 @@
-# `dwolla-java-sdk v1.1.0`
+# `dwolla-java-sdk v1.1.1`
 
 [![Build Status](https://travis-ci.org/therockstorm/dwolla-java-sdk.png?branch=master)](https://travis-ci.org/therockstorm/dwolla-java-sdk)
 
@@ -10,20 +10,20 @@ This wrapper uses the [Retrofit](https://github.com/square/retrofit) REST client
 
 Create a callback that extends DwollaCallback with the correct Response object:
 ```java
-private class BasicInformationCallback extends DwollaCallback<BasicAccountInformationResponse> {
-      @Override
-      public void success(BasicAccountInformationResponse response) {
-         if (response.Success)
-            // Handle response...
-         else
-            super.failure(response.Message);
-      }
+    private class BasicInformationCallback extends DwollaCallback<BasicAccountInformationResponse> {
+        @Override
+        public void success(BasicAccountInformationResponse response, Response r) {
+            if (response.Success)
+                System.out.println("Success!");
+            else
+                super.failure(response.Message, this);
+        }
 
-      @Override
-      public void failure(RetrofitError error) {
-         super.failure(error);
-      }
-   }
+        @Override
+        public void failure(RetrofitError error) {
+            super.failure(error.getMessage(), this);
+        }
+    }
 ```
 Then create the service and make the API call:
 ```java
