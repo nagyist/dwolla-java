@@ -10,8 +10,8 @@ import java.util.TimeZone;
 public class DateTimeUtilsTest {
 
     @Test
-    public void testGetCalendarFromReturnsProperDateTime() {
-        Calendar c = DateTimeUtils.getCalendarFrom("2010-11-12T13:14:15Z");
+    public void testGetCalendarFromUtcReturnsProperDateTime() {
+        Calendar c = DateTimeUtils.getCalendarFromUtc("2010-11-12T13:14:15Z");
         Assert.assertEquals(2010, c.get(Calendar.YEAR));
         Assert.assertEquals(11 - 1, c.get(Calendar.MONTH)); // Subtract 1 since months are 0-based
         Assert.assertEquals(12, c.get(Calendar.DAY_OF_MONTH));
@@ -22,13 +22,13 @@ public class DateTimeUtilsTest {
     }
 
     @Test
-    public void testGetLocalCalendarFromReturnsProperDateTime() {
+    public void testGetLocalCalendarFromUtcReturnsProperDateTime() {
         String date = "2010-11-12T13:14:15Z";
         Calendar expectedCal = DatatypeConverter.parseDateTime(date);
         TimeZone expectedTz = Calendar.getInstance().getTimeZone();
         expectedCal.add(Calendar.MILLISECOND, expectedTz.getOffset(expectedCal.getTime().getTime()));
 
-        Calendar actualCal = DateTimeUtils.getLocalCalendarFrom(date);
+        Calendar actualCal = DateTimeUtils.getLocalCalendarFromUtc(date);
         Assert.assertEquals(expectedCal.get(Calendar.YEAR), actualCal.get(Calendar.YEAR));
         Assert.assertEquals(expectedCal.get(Calendar.MONTH), actualCal.get(Calendar.MONTH));
         Assert.assertEquals(expectedCal.get(Calendar.DAY_OF_MONTH), actualCal.get(Calendar.DAY_OF_MONTH));
