@@ -4,6 +4,18 @@
 
 The [Dwolla API](http://developers.dwolla.com/dev) wrapper for Java and Android.
 
+## Using with Maven
+
+`dwolla-java-sdk` is published to Maven Central. Simply add the following to the POM:
+
+```xml
+<dependency>
+  <groupId>com.dwolla</groupId>
+  <artifactId>dwolla-java-sdk</artifactId>
+  <version>1.1.4</version>
+</dependency>
+```
+
 ## Quick Start
 
 This wrapper uses the [Retrofit](https://github.com/square/retrofit) REST client. See the DwollaServiceAsync or DwollaServiceSync classes for the supported endpoints and Retrofit's [sample](https://github.com/square/retrofit/blob/master/samples/twitter-client/src/main/java/com/squareup/retrofit/sample/twitter/Client.java) for more details.
