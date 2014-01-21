@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.dwolla</groupId>
     <artifactId>dwolla-java-sdk</artifactId>
-    <version>1.1.6</version>
+    <version>1.1.6-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>dwolla-java-sdk</name>
     <description>Dwolla's Java and Android SDK</description>
     <url>https://developers.dwolla.com/dev</url>
+
+    <organization>
+        <name>Dwolla, Inc.</name>
+        <url>https://www.dwolla.com/</url>
+    </organization>
 
     <licenses>
         <license>
@@ -20,8 +32,49 @@
     </licenses>
 
     <scm>
+        <developerConnection>scm:git:ssh://git@github.com/Dwolla/dwolla-java.git</developerConnection>
+        <connection>scm:git:ssh://git@github.com/Dwolla/dwolla-java.git</connection>
         <url>https://github.com/Dwolla/dwolla-java</url>
+    <tag>HEAD</tag>
     </scm>
+
+    <developers>
+        <developer>
+            <id>therockstorm</id>
+            <name>Rocky Warren</name>
+            <email>rocky@dwolla.com</email>
+        </developer>
+    </developers>
+
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.1</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -39,11 +92,6 @@
         <junit.version>4.11</junit.version>
         <mockito-all.version>1.9.5</mockito-all.version>
     </properties>
-
-    <organization>
-        <name>Dwolla, Inc.</name>
-        <url>https://www.dwolla.com/</url>
-    </organization>
 
     <dependencies>
         <dependency>
@@ -85,6 +133,14 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <mavenExecutorId>forked-path</mavenExecutorId>
                 </configuration>
             </plugin>
         </plugins>
