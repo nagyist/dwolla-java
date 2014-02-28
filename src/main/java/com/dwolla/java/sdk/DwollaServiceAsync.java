@@ -37,7 +37,10 @@ public interface DwollaServiceAsync {
                                Callback<FundingSourcesByIdResponse> callback);
 
     @GET("/fundingsources/")
-    void getFundingSourcesListing(@Query(Consts.Api.TOKEN) String oauthToken, Callback<FundingSourcesListingResponse> callback);
+    void getFundingSourcesListing(@Query(Consts.Api.TOKEN) String oauthToken,
+                                  @Query(Consts.Api.DESTINATION_ID) String destinationId,
+                                  @Query(Consts.Api.DESTINATION_TYPE) String destinationType,
+                                  Callback<FundingSourcesListingResponse> callback);
 
     @POST("/fundingsources/{funding_id}/deposit")
     void deposit(@Body DwollaTypedBytes request, @Path(Consts.Api.FUNDING_ID) String funding_id,
