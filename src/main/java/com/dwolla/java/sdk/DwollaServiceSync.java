@@ -38,7 +38,9 @@ public interface DwollaServiceSync {
                                                      @Path(Consts.Api.FUNDING_ID) String funding_id);
 
     @GET("/fundingsources/")
-    FundingSourcesListingResponse getFundingSourcesListing(@Query(Consts.Api.TOKEN) String oauthToken);
+    FundingSourcesListingResponse getFundingSourcesListing(@Query(Consts.Api.TOKEN) String oauthToken,
+                                                           @Query(Consts.Api.DESTINATION_ID) String destinationId,
+                                                           @Query(Consts.Api.DESTINATION_TYPE) String destinationType);
 
     @POST("/fundingsources/{funding_id}/deposit")
     DepositWithdrawResponse deposit(@Body DwollaTypedBytes request, @Path(Consts.Api.FUNDING_ID) String funding_id);
