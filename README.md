@@ -1,4 +1,4 @@
-# `dwolla-java-sdk v1.1.7-SNAPSHOT`
+# `dwolla-java-sdk v1.1.8`
 
 [![Build Status](https://travis-ci.org/therockstorm/dwolla-java-sdk.png?branch=master)](https://travis-ci.org/therockstorm/dwolla-java-sdk)
 
@@ -12,7 +12,7 @@ The [Dwolla API](http://developers.dwolla.com/dev) wrapper for Java and Android.
 <dependency>
   <groupId>com.dwolla</groupId>
   <artifactId>dwolla-java-sdk</artifactId>
-  <version>1.1.4</version>
+  <version>1.1.8</version>
 </dependency>
 ```
 
