@@ -33,8 +33,10 @@ public class App {
         DwollaServiceAsync asyncService = createAsynchronousService();
 
         // Make calls and continue (non-blocking), results printed in callbacks below
-        asyncService.getBasicAccountInformation(testAccountId, applicationKey, applicationSecret, new BasicInformationCallback());
-        asyncService.send(new DwollaTypedBytes(new Gson(), new SendRequest(userOAuthToken, userPin, testAccountId, 0.01)), new SendCallback());
+        asyncService.getBasicAccountInformation(testAccountId, applicationKey, applicationSecret,
+            new BasicInformationCallback());
+        asyncService.send(new DwollaTypedBytes(new Gson(), new SendRequest(userOAuthToken, userPin, testAccountId, 0.01)),
+            new SendCallback());
     }
 
     private static DwollaServiceAsync createAsynchronousService() {
@@ -49,8 +51,10 @@ public class App {
         DwollaServiceSync syncService = createSynchronousService();
 
         // Make calls, wait for response (blocking), and print result
-        System.out.println(syncService.getBasicAccountInformation(testAccountId, applicationKey, applicationSecret).Response.Name);
-        System.out.println(syncService.send(new DwollaTypedBytes(new Gson(), new SendRequest(userOAuthToken, userPin, testAccountId, 0.01))).Response);
+        System.out.println(syncService
+            .getBasicAccountInformation(testAccountId, applicationKey, applicationSecret).Response.Name);
+        System.out.println(syncService
+            .send(new DwollaTypedBytes(new Gson(), new SendRequest(userOAuthToken, userPin, testAccountId, 0.01))).Response);
     }
 
     private static DwollaServiceSync createSynchronousService() {
