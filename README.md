@@ -15,7 +15,7 @@ The [Dwolla API](http://developers.dwolla.com/dev) wrapper for Java and Android.
 </dependency>
 ```
 For Gradle (Android's new default build automator), include the following in build.gradle:
-```java
+```
 dependencies {
   classpath 'com.dwolla:dwolla-java-sdk:1.1.8'
 }
@@ -23,11 +23,11 @@ dependencies {
 
 ## Quick Start
 
-* `git clone git@github.com:Dwolla/dwolla-java.git`
-* Open dwolla-java-sdk/samples/src/main/java/com/example/App.java and take a look at the commented code
+* Open [App.java](https://github.com/Dwolla/dwolla-java/blob/master/samples/src/main/java/com/example/App.java) and take a look at the commented code
 * If you haven't already, [register](https://www.dwolla.com/register) for a Dwolla account and follow the [Getting Started](https://developers.dwolla.com/dev/docs) documentation to [create an application](https://www.dwolla.com/applications/create) and [generate an OAuth token using your new application](https://developers.dwolla.com/dev/token)
 * Enter your application key, secret, OAuth token, and PIN into the appropriate fields in App.java
 * If you don't have it already, download Maven and follow the installation instructions [here](https://maven.apache.org/download.cgi)
+* `git clone git@github.com:Dwolla/dwolla-java.git`
 * `cd dwolla-java-sdk/samples`
 * `mvn package`
 * `java -cp target/dwolla-example-1.0-SNAPSHOT.jar com.example.App`
