@@ -29,16 +29,12 @@ public class Consts {
         public static final String DWOLLA = "Dwolla";
         public static final String PHONE = "Phone";
         public static final String EMAIL = "Email";
-        public static final String TWITTER = "Twitter";
 
     }
 
     public static class UserContactType {
 
         public static final String DWOLLA = "Dwolla";
-        public static final String TWITTER = "Twitter";
-        public static final String LINKED_IN = "LinkedIn";
-        public static final String FOURSQUARE = "Foursquare";
 
     }
 

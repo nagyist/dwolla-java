@@ -1,4 +1,4 @@
-# `dwolla-java-sdk v1.1.8`
+# `dwolla-java-sdk v1.2`
 
 [![Build Status](https://travis-ci.org/therockstorm/dwolla-java-sdk.png?branch=master)](https://travis-ci.org/therockstorm/dwolla-java-sdk)
 
@@ -40,6 +40,6 @@ dependencies {
 
 ## License
 
-Copyright © 2013 Dwolla
+Copyright © 2014 Dwolla
 
 [MIT License](http://www.opensource.org/licenses/mit-license.php)
