@@ -15,6 +15,7 @@ import retrofit.client.Response;
 
 public class App {
     private final static String baseUrl = "https://www.dwolla.com/oauth/rest";
+    // Sandbox mode: private final static String baseUrl = "https://uat.dwolla.com/oauth/rest";
     private final static String applicationKey = "";
     private final static String applicationSecret = "";
     private final static String userOAuthToken = "";
