@@ -11,7 +11,7 @@
 
     <groupId>com.dwolla</groupId>
     <artifactId>dwolla-java-sdk</artifactId>
-    <version>1.1.8-SNAPSHOT</version>
+    <version>1.1.9-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>dwolla-java-sdk</name>
@@ -120,7 +120,7 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>${mockito-all.version}</version>
-            <scope>compile</scope>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -144,6 +144,17 @@
                 </configuration>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.1</version>
+                    <configuration>
+                        <pushChanges>false</pushChanges>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
-
 </project>

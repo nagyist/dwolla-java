@@ -1,6 +1,21 @@
 package com.dwolla.java.sdk;
 
 import com.dwolla.java.sdk.responses.*;
+import com.dwolla.java.sdk.responses.AccountInformationResponse;
+import com.dwolla.java.sdk.responses.BalanceResponse;
+import com.dwolla.java.sdk.responses.BasicAccountInformationResponse;
+import com.dwolla.java.sdk.responses.DepositWithdrawResponse;
+import com.dwolla.java.sdk.responses.FulfillRequestResponse;
+import com.dwolla.java.sdk.responses.FundingSourcesByIdResponse;
+import com.dwolla.java.sdk.responses.FundingSourcesListingResponse;
+import com.dwolla.java.sdk.responses.NearbySpotsResponse;
+import com.dwolla.java.sdk.responses.NearbyUsersResponse;
+import com.dwolla.java.sdk.responses.PendingRequestsResponse;
+import com.dwolla.java.sdk.responses.RequestResponse;
+import com.dwolla.java.sdk.responses.SendResponse;
+import com.dwolla.java.sdk.responses.TransactionResponse;
+import com.dwolla.java.sdk.responses.TransactionsResponse;
+import com.dwolla.java.sdk.responses.UserContactsResponse;
 import retrofit.Callback;
 import retrofit.http.*;
 
