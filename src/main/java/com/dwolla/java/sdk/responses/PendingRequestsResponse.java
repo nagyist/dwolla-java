@@ -9,25 +9,22 @@ public class PendingRequestsResponse extends Response {
     public PendingRequest[] Response;
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + Arrays.hashCode(Response);
-        return result;
-    }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PendingRequestsResponse)) return false;
+        if (!super.equals(o)) return false;
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        PendingRequestsResponse other = (PendingRequestsResponse) obj;
-        if (!Arrays.equals(Response, other.Response))
-            return false;
+        PendingRequestsResponse that = (PendingRequestsResponse) o;
+
+        if (!Arrays.equals(Response, that.Response)) return false;
+
         return true;
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (Response != null ? Arrays.hashCode(Response) : 0);
+        return result;
+    }
 }

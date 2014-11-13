@@ -31,5 +31,4 @@ public class RequestRequestTest {
     private String getJsonString(RequestRequest obj) {
         return "{\"oauth_token\":\"123abc\",\"sourceId\":\"812-000-0000\",\"amount\":1.11,\"sourceType\":\"Dwolla\",\"facilitatorAmount\":\"0.05\",\"notes\":\"Notes\"}";
     }
-
 }
