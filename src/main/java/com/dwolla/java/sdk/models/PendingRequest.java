@@ -4,8 +4,8 @@ public class PendingRequest extends Request {
 
     public String DateRequested;
 
-    public PendingRequest(int id, double amount, String dateRequested, String status, UserContact source, UserContact destination) {
-        super(id, amount, status, source, destination);
+    public PendingRequest(int id, double amount, String dateRequested, String status, UserContact source, UserContact destination, String notes) {
+        super(id, amount, status, source, destination, notes);
         DateRequested = dateRequested;
     }
 

@@ -7,8 +7,8 @@ public class FulfillRequest extends Request {
     public String ClearingDate;
 
     public FulfillRequest(int id, int requestId, double amount, String sentDate, String clearingDate, String status, UserContact source,
-                          UserContact destination) {
-        super(id, amount, status, source, destination);
+                          UserContact destination, String notes) {
+        super(id, amount, status, source, destination, notes);
         RequestId = requestId;
         SentDate = sentDate;
         ClearingDate = clearingDate;
