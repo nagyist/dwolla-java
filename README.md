@@ -1,4 +1,4 @@
-# `dwolla-java-sdk v1.2`
+# `dwolla-java-sdk v1.2.0`
 
 [![Build Status](https://travis-ci.org/therockstorm/dwolla-java-sdk.png?branch=master)](https://travis-ci.org/therockstorm/dwolla-java-sdk)
 
@@ -11,13 +11,13 @@ The [Dwolla API](http://developers.dwolla.com/dev) wrapper for Java and Android.
 <dependency>
   <groupId>com.dwolla</groupId>
   <artifactId>dwolla-java-sdk</artifactId>
-  <version>1.1.8</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 For Gradle (Android's new default build automator), include the following in build.gradle:
 ```
 dependencies {
-  classpath 'com.dwolla:dwolla-java-sdk:1.1.8'
+  classpath 'com.dwolla:dwolla-java-sdk:1.2.0'
 }
 ```
 
