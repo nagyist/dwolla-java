@@ -48,7 +48,7 @@
 
     <profiles>
         <profile>
-            <id>release</id>
+            <id>dwolla-java-release</id>
             <build>
                 <plugins>
                     <plugin>
@@ -164,7 +164,7 @@
                      <version>2.5</version>
                      <configuration>
                           <useReleaseProfile>false</useReleaseProfile>
-                          <releaseProfiles>release</releaseProfiles>
+                          <arguments>-Pdwolla-java-release</arguments>
                           <pushChanges>false</pushChanges>
                           <localCheckout>true</localCheckout>
                           <goals>deploy</goals>
