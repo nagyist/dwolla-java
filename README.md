@@ -1,5 +1,7 @@
 # `dwolla-java-sdk v1.2.0`
 
+[![Join the chat at https://gitter.im/Dwolla/dwolla-java](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Dwolla/dwolla-java?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/therockstorm/dwolla-java-sdk.png?branch=master)](https://travis-ci.org/therockstorm/dwolla-java-sdk)
 
 The [Dwolla API](http://developers.dwolla.com/dev) wrapper for Java and Android. See the DwollaServiceAsync and DwollaServiceSync classes for the supported endpoints. It usees the [Retrofit](https://github.com/square/retrofit) REST client by Square. For more information, see Retrofit's [samples](https://github.com/square/retrofit/tree/master/retrofit-samples).
