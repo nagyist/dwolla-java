@@ -20,8 +20,8 @@ public class Consts {
         public static final String GROUP_ID = "group_id";
         public static final String ACCOUNT_ID = "account_identifier";
         public static final String TRANSACTION_ID = "transaction_id";
-        public static final String DESTINATION_ID ="destinationId";
-        public static final String DESTINATION_TYPE ="destinationType";
+        public static final String DESTINATION_ID = "destinationId";
+        public static final String DESTINATION_TYPE = "destinationType";
     }
 
     public static class UserType {
@@ -52,6 +52,7 @@ public class Consts {
 
         public static final String BALANCE = "Balance";
         public static final String BANK = "Bank";
+
     }
 
 }

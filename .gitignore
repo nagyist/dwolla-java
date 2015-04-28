@@ -11,7 +11,7 @@ out
 lib
 
 target
-pom.xml.*
+*pom.xml*
 release.properties
 
 .idea

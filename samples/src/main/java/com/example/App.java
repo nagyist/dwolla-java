@@ -14,12 +14,12 @@ import retrofit.Server;
 import retrofit.client.Response;
 
 public class App {
-    private final static String baseUrl = "https://www.dwolla.com/oauth/rest";
+    private final static String baseUrl = "http://localhost:52428";
     // Sandbox mode: private final static String baseUrl = "https://uat.dwolla.com/oauth/rest";
-    private final static String applicationKey = "";
-    private final static String applicationSecret = "";
-    private final static String userOAuthToken = "";
-    private final static String userPin = "";
+    private final static String applicationKey = "BbhAApqJW4FXCeATqeDXj1IDgUY/+LK0GXMy7KUWVLJhTSjs3V";
+    private final static String applicationSecret = "1NE7lhTMIrYUNzcFiiCnb7kMhgwUmzdMj4pZb9BlEoVkJqLe1H";
+    private final static String userOAuthToken = "9iRNr8g0cQqoFsQx6ZXNu3HbX2nf1Dtmq5bs20ZtmkOWZLPuE0";
+    private final static String userPin = "1234";
 
     // Dwolla Reflector account, any money sent to it will be sent right back to you
     private final static String testAccountId = "812-713-9234";

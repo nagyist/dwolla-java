@@ -30,7 +30,6 @@ public abstract class DwollaCallback<T> implements Callback<T> {
         Response response = error.getResponse();
         StringBuilder sb = new StringBuilder("Retrofit failure:\nUrl: ").append(error.getUrl());
 
-        sb.append("\nisNetworkError: ").append(error.isNetworkError());
         sb.append("\nMessage: ").append(error.getMessage());
         sb.append("\nCause: ").append(error.getCause());
 

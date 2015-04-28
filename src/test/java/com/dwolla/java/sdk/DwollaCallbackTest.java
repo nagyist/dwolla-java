@@ -53,7 +53,7 @@ public class DwollaCallbackTest {
 
     @Test
     public void testFailureWithNullDoesNotThrow() {
-        RetrofitError error = RetrofitError.conversionError(null, null, null, null, null);
+        RetrofitError error = RetrofitError.conversionError(null, null, null, null, new ConversionException(""));
 
         try {
             callback.failure(error);
@@ -67,13 +67,14 @@ public class DwollaCallbackTest {
         String reason = "reason";
         List<Header> headers = Arrays.asList(new Header("name1", "value1"), new Header("name2", "value2"));
         String body = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><body></body></html>";
-        Response response = new Response(200, reason, headers, new TypedInputStream("application/json", body.length(), new ByteArrayInputStream(
+        String url = "http://www.example.com";
+        Response response = new Response(url, 200, reason, headers, new TypedInputStream("application/json", body.length(), new ByteArrayInputStream(
                 body.getBytes())));
         RetrofitError error = RetrofitError.conversionError("https://www.dwolla.com", response, new GsonConverter(new Gson()), null,
                 new ConversionException("message"));
 
         Assert.assertEquals(
-                "Retrofit failure:\nUrl: https://www.dwolla.com\nisNetworkError: false\nMessage: retrofit.converter.ConversionException: message\nCause: retrofit.converter.ConversionException: message\nStatus code: 200\nReason: reason\nHeaders:\nname1: value1\nname2: value2\nBody: <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><body></body></html>",
+                "Retrofit failure:\nUrl: https://www.dwolla.com\nMessage: message\nCause: retrofit.converter.ConversionException: message\nStatus code: 200\nReason: reason\nHeaders:\nname1: value1\nname2: value2\nBody: <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><body></body></html>",
                 callback.formatErrorMessage(error));
     }
 
