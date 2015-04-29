@@ -10,9 +10,9 @@ public class TransactionResponseTest {
 
     @Test
     public void testConversionToJSON() {
-        TransactionResponse transactionResponse = createObject();
+        TransactionResponse response = createObject();
 
-        String actual = new Gson().toJson(transactionResponse);
+        String actual = new Gson().toJson(response);
 
         Assert.assertEquals(getJSONString(), actual);
     }
@@ -33,8 +33,7 @@ public class TransactionResponseTest {
     }
 
     private String getJSONString() {
-        String jsonString = "{\"Response\":{\"Fees\":[{\"Id\":2,\"Amount\":0.25,\"Date\":\"12/23/2013\",\"Type\":\"fee\",\"UserType\":\"Dwolla\",\"DestinationId\":\"812-555-1234\",\"DestinationName\":\"somePlaceCool\",\"SourceId\":\"812-555-4321\",\"SourceName\":\"somePerson\",\"ClearingDate\":\"12/24/2013\",\"Status\":\"processed\",\"Notes\":\"beer\"}],\"Id\":1,\"Amount\":100.0,\"Date\":\"12/23/2013\",\"Type\":\"money_sent\",\"UserType\":\"Dwolla\",\"DestinationId\":\"812-555-1234\",\"DestinationName\":\"somePlaceCool\",\"SourceId\":\"812-555-4321\",\"SourceName\":\"somePerson\",\"ClearingDate\":\"12/24/2013\",\"Status\":\"processed\",\"Notes\":\"beer\"},\"Success\":false}";
-        return jsonString;
+        return "{\"Response\":{\"Fees\":[{\"Id\":2,\"Amount\":0.25,\"Date\":\"12/23/2013\",\"Type\":\"fee\",\"UserType\":\"Dwolla\",\"DestinationId\":\"812-555-1234\",\"DestinationName\":\"somePlaceCool\",\"SourceId\":\"812-555-4321\",\"SourceName\":\"somePerson\",\"ClearingDate\":\"12/24/2013\",\"Status\":\"processed\",\"Notes\":\"beer\"}],\"Id\":1,\"Amount\":100.0,\"Date\":\"12/23/2013\",\"Type\":\"money_sent\",\"UserType\":\"Dwolla\",\"DestinationId\":\"812-555-1234\",\"DestinationName\":\"somePlaceCool\",\"SourceId\":\"812-555-4321\",\"SourceName\":\"somePerson\",\"ClearingDate\":\"12/24/2013\",\"Status\":\"processed\",\"Notes\":\"beer\"},\"Success\":false}";
     }
 
 }

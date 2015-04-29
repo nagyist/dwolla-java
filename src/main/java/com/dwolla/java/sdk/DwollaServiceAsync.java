@@ -1,21 +1,6 @@
 package com.dwolla.java.sdk;
 
 import com.dwolla.java.sdk.responses.*;
-import com.dwolla.java.sdk.responses.AccountInformationResponse;
-import com.dwolla.java.sdk.responses.BalanceResponse;
-import com.dwolla.java.sdk.responses.BasicAccountInformationResponse;
-import com.dwolla.java.sdk.responses.DepositWithdrawResponse;
-import com.dwolla.java.sdk.responses.FulfillRequestResponse;
-import com.dwolla.java.sdk.responses.FundingSourcesByIdResponse;
-import com.dwolla.java.sdk.responses.FundingSourcesListingResponse;
-import com.dwolla.java.sdk.responses.NearbySpotsResponse;
-import com.dwolla.java.sdk.responses.NearbyUsersResponse;
-import com.dwolla.java.sdk.responses.PendingRequestsResponse;
-import com.dwolla.java.sdk.responses.RequestResponse;
-import com.dwolla.java.sdk.responses.SendResponse;
-import com.dwolla.java.sdk.responses.TransactionResponse;
-import com.dwolla.java.sdk.responses.TransactionsResponse;
-import com.dwolla.java.sdk.responses.UserContactsResponse;
 import retrofit.Callback;
 import retrofit.http.*;
 
@@ -29,7 +14,9 @@ public interface DwollaServiceAsync {
      * Balance
      */
     @GET("/balance/")
-    void getBalance(@Query(Consts.Api.TOKEN) String oauthToken, Callback<BalanceResponse> callback);
+    void getBalance(
+            @Query(Consts.Api.TOKEN) String oauthToken,
+            Callback<BalanceResponse> callback);
 
     /**
      * Contacts
@@ -85,18 +72,34 @@ public interface DwollaServiceAsync {
      * Requests
      */
     @GET("/requests/")
-    void getPendingRequests(
+    void getRequests(
             @Query(Consts.Api.TOKEN) String oauthToken,
-            Callback<PendingRequestsResponse> callback);
+            @Query(Consts.Api.SKIP) int skip,
+            @Query(Consts.Api.LIMIT) int limit,
+            Callback<RequestsResponse> callback);
+
+    @GET("/requests/{request_id}")
+    void getRequest(
+            @Query(Consts.Api.TOKEN) String oauthToken,
+            @Path(Consts.Api.REQUEST_ID) int id,
+            Callback<RequestResponse> callback);
+
+    @POST("/requests/")
+    void request(
+            @Body DwollaTypedBytes request,
+            Callback<RequestResponse> callback);
 
     @POST("/requests/{request_id}/fulfill")
     void fulfillRequest(
             @Body DwollaTypedBytes request,
-            @Path(Consts.Api.REQUEST_ID) String request_id,
+            @Path(Consts.Api.REQUEST_ID) String id,
             Callback<FulfillRequestResponse> callback);
 
-    @POST("/requests/")
-    void request(@Body DwollaTypedBytes request, Callback<RequestResponse> callback);
+    @POST("/requests/{request_id}/cancel")
+    void cancelRequest(
+            @Body DwollaTypedBytes request,
+            @Path(Consts.Api.REQUEST_ID) int id,
+            Callback<Response> callback);
 
     /**
      * Transactions
@@ -120,14 +123,31 @@ public interface DwollaServiceAsync {
             @Path(Consts.Api.TRANSACTION_ID) String transaction_id,
             Callback<TransactionResponse> callback);
 
+    @GET("/transactions/{account_identifier}")
+    void getTransaction(
+            @Query(Consts.Api.TOKEN) String oauthToken,
+            @Path(Consts.Api.ACCOUNT_ID) int id,
+            Callback<TransactionResponse> callback);
+
+    @GET("/transactions/search")
+    void searchTransactions(
+            @Query(Consts.Api.TOKEN) String oauthToken,
+            @Query(Consts.Api.SEARCH_TERM) String searchTerm,
+            @Query(Consts.Api.LIMIT) int limit,
+            Callback<TransactionSearchResponse> callback);
+
     @POST("/transactions/send")
-    void send(@Body DwollaTypedBytes request, Callback<SendResponse> callback);
+    void send(
+            @Body DwollaTypedBytes request,
+            Callback<SendResponse> callback);
 
     /**
      * Users
      */
     @GET("/users/")
-    void getAccountInformation(@Query(Consts.Api.TOKEN) String oauthToken, Callback<AccountInformationResponse> callback);
+    void getAccountInformation(
+            @Query(Consts.Api.TOKEN) String oauthToken,
+            Callback<AccountInformationResponse> callback);
 
     @GET("/users/{account_identifier}")
     void getBasicAccountInformation(

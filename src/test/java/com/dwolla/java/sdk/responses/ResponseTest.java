@@ -1,5 +1,7 @@
 package com.dwolla.java.sdk.responses;
 
+import com.dwolla.java.sdk.models.LinkDetails;
+import com.dwolla.java.sdk.models.Links;
 import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,17 +25,19 @@ public class ResponseTest {
 
         Assert.assertEquals(expected.Success, actual.Success);
         Assert.assertEquals(expected.Message, actual.Message);
+        Assert.assertEquals(expected._links, actual._links);
     }
 
     private Response createResponseObject() {
         Response response = new Response();
         response.Success = true;
         response.Message = "Success";
+        response._links = new Links(new LinkDetails("http://uat.dwolla.com"), new LinkDetails("http://uat.dwolla.com/1"), new LinkDetails("http://uat.dwolla.com/2"), new LinkDetails("http://uat.dwolla.com/3", true));
         return response;
     }
 
     private String getJsonString(Response obj) {
-        return String.format("{\"Success\":%s,\"Message\":\"%s\"}", obj.Success, obj.Message);
+        return "{\"Success\":true,\"Message\":\"Success\",\"_links\":{\"self\":{\"href\":\"http://uat.dwolla.com\",\"templated\":false},\"send\":{\"href\":\"http://uat.dwolla.com/1\",\"templated\":false},\"createScheduled\":{\"href\":\"http://uat.dwolla.com/2\",\"templated\":false},\"fulfill\":{\"href\":\"http://uat.dwolla.com/3\",\"templated\":true}}}";
     }
 
 }

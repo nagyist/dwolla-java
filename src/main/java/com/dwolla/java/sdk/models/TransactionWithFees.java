@@ -32,9 +32,7 @@ public class TransactionWithFees extends Transaction {
         if (getClass() != obj.getClass())
             return false;
         TransactionWithFees other = (TransactionWithFees) obj;
-        if (!Arrays.equals(Fees, other.Fees))
-            return false;
-        return true;
+        return Arrays.equals(Fees, other.Fees);
     }
 
 }

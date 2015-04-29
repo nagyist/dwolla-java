@@ -1,21 +1,6 @@
 package com.dwolla.java.sdk;
 
 import com.dwolla.java.sdk.responses.*;
-import com.dwolla.java.sdk.responses.AccountInformationResponse;
-import com.dwolla.java.sdk.responses.BalanceResponse;
-import com.dwolla.java.sdk.responses.BasicAccountInformationResponse;
-import com.dwolla.java.sdk.responses.DepositWithdrawResponse;
-import com.dwolla.java.sdk.responses.FulfillRequestResponse;
-import com.dwolla.java.sdk.responses.FundingSourcesByIdResponse;
-import com.dwolla.java.sdk.responses.FundingSourcesListingResponse;
-import com.dwolla.java.sdk.responses.NearbySpotsResponse;
-import com.dwolla.java.sdk.responses.NearbyUsersResponse;
-import com.dwolla.java.sdk.responses.PendingRequestsResponse;
-import com.dwolla.java.sdk.responses.RequestResponse;
-import com.dwolla.java.sdk.responses.SendResponse;
-import com.dwolla.java.sdk.responses.TransactionResponse;
-import com.dwolla.java.sdk.responses.TransactionsResponse;
-import com.dwolla.java.sdk.responses.UserContactsResponse;
 import retrofit.http.*;
 
 /**
@@ -28,7 +13,8 @@ public interface DwollaServiceSync {
      * Balance
      */
     @GET("/balance/")
-    BalanceResponse getBalance(@Query(Consts.Api.TOKEN) String oauthToken);
+    BalanceResponse getBalance(
+            @Query(Consts.Api.TOKEN) String oauthToken);
 
     /**
      * Contacts
@@ -65,22 +51,42 @@ public interface DwollaServiceSync {
             @Query(Consts.Api.DESTINATION_TYPE) String destinationType);
 
     @POST("/fundingsources/{funding_id}/deposit")
-    DepositWithdrawResponse deposit(@Body DwollaTypedBytes request, @Path(Consts.Api.FUNDING_ID) String funding_id);
+    DepositWithdrawResponse deposit(
+            @Body DwollaTypedBytes request,
+            @Path(Consts.Api.FUNDING_ID) String funding_id);
 
     @POST("/fundingsources/{funding_id}/withdraw")
-    DepositWithdrawResponse withdraw(@Body DwollaTypedBytes request, @Path(Consts.Api.FUNDING_ID) String funding_id);
+    DepositWithdrawResponse withdraw(
+            @Body DwollaTypedBytes request,
+            @Path(Consts.Api.FUNDING_ID) String funding_id);
 
     /**
      * Requests
      */
     @GET("/requests/")
-    PendingRequestsResponse getPendingRequests(@Query(Consts.Api.TOKEN) String oauthToken);
+    RequestsResponse getRequests(
+            @Query(Consts.Api.TOKEN) String oauthToken,
+            @Query(Consts.Api.SKIP) int skip,
+            @Query(Consts.Api.LIMIT) int limit);
 
-    @POST("/requests/{request_id}/fulfill")
-    FulfillRequestResponse fulfillRequest(@Body DwollaTypedBytes request, @Path(Consts.Api.REQUEST_ID) String request_id);
+    @GET("/requests/{request_id}")
+    RequestResponse getRequest(
+            @Query(Consts.Api.TOKEN) String oauthToken,
+            @Path(Consts.Api.REQUEST_ID) int id);
 
     @POST("/requests/")
-    RequestResponse request(@Body DwollaTypedBytes request);
+    RequestResponse request(
+            @Body DwollaTypedBytes request);
+
+    @POST("/requests/{request_id}/fulfill")
+    FulfillRequestResponse fulfillRequest(
+            @Body DwollaTypedBytes request,
+            @Path(Consts.Api.REQUEST_ID) String id);
+
+    @POST("/requests/{request_id}/cancel")
+    Response cancelRequest(
+            @Body DwollaTypedBytes request,
+            @Path(Consts.Api.REQUEST_ID) int id);
 
     /**
      * Transactions
@@ -102,14 +108,27 @@ public interface DwollaServiceSync {
             @Query(Consts.Api.TOKEN) String oauthToken,
             @Path(Consts.Api.TRANSACTION_ID) String transaction_id);
 
+    @GET("/transactions/{account_identifier}")
+    TransactionResponse getTransaction(
+            @Query(Consts.Api.TOKEN) String oauthToken,
+            @Path(Consts.Api.ACCOUNT_ID) int id);
+
+    @GET("/transactions/search")
+    TransactionSearchResponse searchTransactions(
+            @Query(Consts.Api.TOKEN) String oauthToken,
+            @Query(Consts.Api.SEARCH_TERM) String searchTerm,
+            @Query(Consts.Api.LIMIT) int limit);
+
     @POST("/transactions/send")
-    SendResponse send(@Body DwollaTypedBytes request);
+    SendResponse send(
+            @Body DwollaTypedBytes request);
 
     /**
      * Users
      */
     @GET("/users/")
-    AccountInformationResponse getAccountInformation(@Query(Consts.Api.TOKEN) String oauthToken);
+    AccountInformationResponse getAccountInformation(
+            @Query(Consts.Api.TOKEN) String oauthToken);
 
     @GET("/users/{account_identifier}")
     BasicAccountInformationResponse getBasicAccountInformation(

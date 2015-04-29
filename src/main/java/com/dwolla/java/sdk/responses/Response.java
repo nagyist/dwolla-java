@@ -1,9 +1,12 @@
 package com.dwolla.java.sdk.responses;
 
+import com.dwolla.java.sdk.models.Links;
+
 public class Response {
 
     public boolean Success;
     public String Message;
+    public Links _links;
 
     @Override
     public int hashCode() {

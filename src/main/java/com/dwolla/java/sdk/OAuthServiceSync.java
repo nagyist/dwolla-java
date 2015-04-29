@@ -11,6 +11,7 @@ import retrofit.http.POST;
 public interface OAuthServiceSync {
 
     @POST("/token")
-    TokenResponse getToken(@Body DwollaTypedBytes request);
+    TokenResponse getToken(
+            @Body DwollaTypedBytes request);
 
 }
