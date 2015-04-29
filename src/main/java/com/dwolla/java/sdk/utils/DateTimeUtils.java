@@ -5,11 +5,11 @@ import org.joda.time.DateTimeZone;
 
 public class DateTimeUtils {
 
-    public static DateTime getCalendarFromUtc(String utcDateTime) {
+    public static DateTime fromUtc(String utcDateTime) {
         return DateTime.parse(utcDateTime);
     }
 
-    public static DateTime getLocalCalendarFromUtc(String utcDateTime) {
+    public static DateTime localFromUtc(String utcDateTime) {
         return DateTime.parse(utcDateTime).withZone(DateTimeZone.getDefault());
     }
 

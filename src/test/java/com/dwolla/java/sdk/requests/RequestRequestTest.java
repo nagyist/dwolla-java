@@ -25,10 +25,10 @@ public class RequestRequestTest {
     }
 
     private RequestRequest createRequestObject() {
-        return new RequestRequest("123abc", "812-000-0000", 1.11, "Dwolla", "0.05", "Notes");
+        return new RequestRequest("812-000-0000", 1.11, "Dwolla", "0.05", "Notes");
     }
 
     private String getJsonString(RequestRequest obj) {
-        return "{\"oauth_token\":\"123abc\",\"sourceId\":\"812-000-0000\",\"amount\":1.11,\"sourceType\":\"Dwolla\",\"facilitatorAmount\":\"0.05\",\"notes\":\"Notes\"}";
+        return "{\"sourceId\":\"812-000-0000\",\"amount\":1.11,\"sourceType\":\"Dwolla\",\"facilitatorAmount\":\"0.05\",\"notes\":\"Notes\"}";
     }
 }

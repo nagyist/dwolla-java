@@ -27,7 +27,7 @@ public class TransactionSearchResponseTest {
     private TransactionSearchResponse createObject() {
         TransactionSearchResponse response = new TransactionSearchResponse();
         TransactionWithFees[] results = new TransactionWithFees[1];
-        results[0] = new TransactionWithFees(1, 100.00, "12/23/2013", "money_sent", "Dwolla", "812-555-1234", "somePlaceCool", "812-555-4321", "somePerson", "12/24/2013", "processed", "beer", null);
+        results[0] = new TransactionWithFees(1, 100.00, "12/23/2013", "money_sent", "Dwolla", "812-555-1234", "somePlaceCool", "812-555-4321", "somePerson", "12/24/2013", "processed", "beer", null, null);
         response.Response = new TransactionSearchResult(results, results.length);
 
         return response;

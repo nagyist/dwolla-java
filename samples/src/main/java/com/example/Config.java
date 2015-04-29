@@ -1,6 +1,6 @@
 package com.example;
 
-public class Urls {
+public class Config {
 
     // Production:
     //public final static String BASE_URL = "https://www.dwolla.com/oauth/rest";

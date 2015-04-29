@@ -14,4 +14,8 @@ public interface OAuthServiceSync {
     TokenResponse getToken(
             @Body DwollaTypedBytes request);
 
+    @POST("/token")
+    TokenResponse refreshToken(
+            @Body DwollaTypedBytes request);
+
 }

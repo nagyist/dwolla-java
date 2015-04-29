@@ -4,7 +4,12 @@ public class Consts {
 
     public static class Api {
 
+        public static final String AUTHORIZATION = "Authorization";
         public static final String TOKEN = "oauth_token";
+        public static final String AUTHORIZATION_CODE = "authorization_code";
+        public static final String REFRESH_TOKEN = "refresh_token";
+        public static final String EXPIRED_TOKEN = "Expired access token.";
+
         public static final String CLIENT_ID = "client_id";
         public static final String CLIENT_SECRET = "client_secret";
         public static final String LATITUDE = "latitude";
@@ -23,7 +28,6 @@ public class Consts {
         public static final String DESTINATION_ID = "destinationId";
         public static final String DESTINATION_TYPE = "destinationType";
         public static final String SEARCH_TERM = "searchTerm";
-
     }
 
     public static class UserType {

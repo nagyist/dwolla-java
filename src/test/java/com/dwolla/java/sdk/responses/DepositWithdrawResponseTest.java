@@ -28,7 +28,7 @@ public class DepositWithdrawResponseTest {
     private DepositWithdrawResponse createResponseObject() {
         DepositWithdrawResponse response = new DepositWithdrawResponse();
         response.Response = new Transaction(123, 1.11, "1-1-11", "money_sent", "Dwolla", "812-000-0000", "812-000-0001", "Ben Milne", "1", "1-2-11",
-                "processed", "Hey");
+                "processed", "Hey", null);
         return response;
     }
 

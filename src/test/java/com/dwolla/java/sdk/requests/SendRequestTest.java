@@ -5,6 +5,9 @@ import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SendRequestTest {
 
     @Test
@@ -27,16 +30,13 @@ public class SendRequestTest {
 
     private SendRequest createRequestObject() {
         AdditionalFee[] fees = {new AdditionalFee("812-000-0001", 0.01), new AdditionalFee("812-000-0002", 0.02)};
-        return new SendRequest("123abc", "123", "812-000-0000", 1.11, true, "Dwolla", "0.05", "Notes", "Balance", fees);
+        Map<String, String> metadata = new HashMap<String, String>();
+        metadata.put("dog", "cat");
+        return new SendRequest("123", "812-000-0000", 1.11, true, "Dwolla", "0.05", "Notes", "Balance", fees, metadata);
     }
 
     private String getJsonString(SendRequest obj) {
-        return String
-                .format(
-                        "{\"oauth_token\":\"%s\",\"pin\":\"%s\",\"destinationId\":\"%s\",\"amount\":%.2f,\"assumeCosts\":%b,\"destinationType\":\"%s\",\"facilitatorAmount\":\"%s\",\"notes\":\"%s\",\"fundsSource\":\"%s\",\"additionalFees\":[{\"destinationId\":\"%s\",\"amount\":%.2f},{\"destinationId\":\"%s\",\"amount\":%.2f}]}",
-                        obj.oauth_token, obj.pin, obj.destinationId, obj.amount, obj.assumeCosts, obj.destinationType, obj.facilitatorAmount, obj.notes,
-                        obj.fundsSource, obj.additionalFees[0].destinationId, obj.additionalFees[0].amount, obj.additionalFees[1].destinationId,
-                        obj.additionalFees[1].amount);
+        return "{\"pin\":\"123\",\"destinationId\":\"812-000-0000\",\"amount\":1.11,\"assumeCosts\":true,\"destinationType\":\"Dwolla\",\"facilitatorAmount\":\"0.05\",\"notes\":\"Notes\",\"fundsSource\":\"Balance\",\"additionalFees\":[{\"destinationId\":\"812-000-0001\",\"amount\":0.01},{\"destinationId\":\"812-000-0002\",\"amount\":0.02}],\"metadata\":{\"dog\":\"cat\"}}";
     }
 
 }

@@ -9,7 +9,7 @@ public class DateTimeUtilsTest {
 
     @Test
     public void testGetCalendarFromUtcReturnsProperDateTime() {
-        DateTime dt = DateTimeUtils.getCalendarFromUtc("2010-11-12T13:14:15Z");
+        DateTime dt = DateTimeUtils.fromUtc("2010-11-12T13:14:15Z");
 
         Assert.assertEquals(2010, dt.getYear());
         Assert.assertEquals(11, dt.getMonthOfYear());
@@ -25,7 +25,7 @@ public class DateTimeUtilsTest {
         String date = "2010-11-12T13:14:15Z";
         DateTime expectedDt = DateTime.parse(date).withZone(DateTimeZone.getDefault());
 
-        DateTime actualDt = DateTimeUtils.getLocalCalendarFromUtc(date);
+        DateTime actualDt = DateTimeUtils.localFromUtc(date);
         Assert.assertEquals(expectedDt.getYear(), actualDt.getYear());
         Assert.assertEquals(expectedDt.getMonthOfYear(), actualDt.getMonthOfYear());
         Assert.assertEquals(expectedDt.getDayOfMonth(), actualDt.getDayOfMonth());

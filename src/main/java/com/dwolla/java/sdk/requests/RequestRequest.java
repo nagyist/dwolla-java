@@ -5,7 +5,6 @@ public class RequestRequest {
     /**
      * Required
      */
-    public String oauth_token;
     public String sourceId;
     public double amount;
 
@@ -16,72 +15,44 @@ public class RequestRequest {
     public String facilitatorAmount = null;
     public String notes = null;
 
-    public RequestRequest(String oauth_token, String sourceId, double amount) {
-        super();
-        this.oauth_token = oauth_token;
+    public RequestRequest(String sourceId, double amount) {
         this.sourceId = sourceId;
         this.amount = amount;
     }
 
-    public RequestRequest(String oauth_token, String sourceId, double amount, String sourceType, String facilitatorAmount, String notes) {
-        this(oauth_token, sourceId, amount);
+    public RequestRequest(String sourceId, double amount, String sourceType, String facilitatorAmount, String notes) {
+        this(sourceId, amount);
         this.sourceType = sourceType;
         this.facilitatorAmount = facilitatorAmount;
         this.notes = notes;
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        long temp;
-        temp = Double.doubleToLongBits(amount);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result + ((facilitatorAmount == null) ? 0 : facilitatorAmount.hashCode());
-        result = prime * result + ((notes == null) ? 0 : notes.hashCode());
-        result = prime * result + ((oauth_token == null) ? 0 : oauth_token.hashCode());
-        result = prime * result + ((sourceId == null) ? 0 : sourceId.hashCode());
-        result = prime * result + ((sourceType == null) ? 0 : sourceType.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RequestRequest that = (RequestRequest) o;
+
+        if (Double.compare(that.amount, amount) != 0) return false;
+        if (sourceId != null ? !sourceId.equals(that.sourceId) : that.sourceId != null) return false;
+        if (sourceType != null ? !sourceType.equals(that.sourceType) : that.sourceType != null) return false;
+        if (facilitatorAmount != null ? !facilitatorAmount.equals(that.facilitatorAmount) : that.facilitatorAmount != null)
+            return false;
+        return !(notes != null ? !notes.equals(that.notes) : that.notes != null);
+
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        RequestRequest other = (RequestRequest) obj;
-        if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
-            return false;
-        if (facilitatorAmount == null) {
-            if (other.facilitatorAmount != null)
-                return false;
-        } else if (!facilitatorAmount.equals(other.facilitatorAmount))
-            return false;
-        if (notes == null) {
-            if (other.notes != null)
-                return false;
-        } else if (!notes.equals(other.notes))
-            return false;
-        if (oauth_token == null) {
-            if (other.oauth_token != null)
-                return false;
-        } else if (!oauth_token.equals(other.oauth_token))
-            return false;
-        if (sourceId == null) {
-            if (other.sourceId != null)
-                return false;
-        } else if (!sourceId.equals(other.sourceId))
-            return false;
-        if (sourceType == null) {
-            if (other.sourceType != null)
-                return false;
-        } else if (!sourceType.equals(other.sourceType))
-            return false;
-        return true;
+    public int hashCode() {
+        int result;
+        long temp;
+        result = sourceId != null ? sourceId.hashCode() : 0;
+        temp = Double.doubleToLongBits(amount);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (sourceType != null ? sourceType.hashCode() : 0);
+        result = 31 * result + (facilitatorAmount != null ? facilitatorAmount.hashCode() : 0);
+        result = 31 * result + (notes != null ? notes.hashCode() : 0);
+        return result;
     }
-
 }

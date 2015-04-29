@@ -1,5 +1,7 @@
 package com.dwolla.java.sdk.models;
 
+import java.util.Map;
+
 public class Transaction {
 
     public int Id;
@@ -14,10 +16,11 @@ public class Transaction {
     public String ClearingDate;
     public String Status;
     public String Notes;
+    public Map<String, String> Metadata;
 
-    public Transaction(int id, double amount, String date, String type, String userType, String destinationId, String destinationName,
-                       String sourceId, String sourceName, String clearingDate, String status, String notes) {
-        super();
+    public Transaction(int id, double amount, String date, String type, String userType, String destinationId,
+                       String destinationName, String sourceId, String sourceName, String clearingDate, String status,
+                       String notes, Map<String, String> metadata) {
         Id = id;
         Amount = amount;
         Date = date;
@@ -30,96 +33,55 @@ public class Transaction {
         ClearingDate = clearingDate;
         Status = status;
         Notes = notes;
+        Metadata = metadata;
     }
 
     public Transaction() {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        long temp;
-        temp = Double.doubleToLongBits(Amount);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result + ((ClearingDate == null) ? 0 : ClearingDate.hashCode());
-        result = prime * result + ((Date == null) ? 0 : Date.hashCode());
-        result = prime * result + ((DestinationId == null) ? 0 : DestinationId.hashCode());
-        result = prime * result + ((DestinationName == null) ? 0 : DestinationName.hashCode());
-        result = prime * result + Id;
-        result = prime * result + ((Notes == null) ? 0 : Notes.hashCode());
-        result = prime * result + ((SourceId == null) ? 0 : SourceId.hashCode());
-        result = prime * result + ((SourceName == null) ? 0 : SourceName.hashCode());
-        result = prime * result + ((Status == null) ? 0 : Status.hashCode());
-        result = prime * result + ((Type == null) ? 0 : Type.hashCode());
-        result = prime * result + ((UserType == null) ? 0 : UserType.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Transaction that = (Transaction) o;
+
+        if (Id != that.Id) return false;
+        if (Double.compare(that.Amount, Amount) != 0) return false;
+        if (Date != null ? !Date.equals(that.Date) : that.Date != null) return false;
+        if (Type != null ? !Type.equals(that.Type) : that.Type != null) return false;
+        if (UserType != null ? !UserType.equals(that.UserType) : that.UserType != null) return false;
+        if (DestinationId != null ? !DestinationId.equals(that.DestinationId) : that.DestinationId != null)
+            return false;
+        if (DestinationName != null ? !DestinationName.equals(that.DestinationName) : that.DestinationName != null)
+            return false;
+        if (SourceId != null ? !SourceId.equals(that.SourceId) : that.SourceId != null) return false;
+        if (SourceName != null ? !SourceName.equals(that.SourceName) : that.SourceName != null) return false;
+        if (ClearingDate != null ? !ClearingDate.equals(that.ClearingDate) : that.ClearingDate != null) return false;
+        if (Status != null ? !Status.equals(that.Status) : that.Status != null) return false;
+        if (Notes != null ? !Notes.equals(that.Notes) : that.Notes != null) return false;
+        return !(Metadata != null ? !Metadata.equals(that.Metadata) : that.Metadata != null);
+
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Transaction other = (Transaction) obj;
-        if (Double.doubleToLongBits(Amount) != Double.doubleToLongBits(other.Amount))
-            return false;
-        if (ClearingDate == null) {
-            if (other.ClearingDate != null)
-                return false;
-        } else if (!ClearingDate.equals(other.ClearingDate))
-            return false;
-        if (Date == null) {
-            if (other.Date != null)
-                return false;
-        } else if (!Date.equals(other.Date))
-            return false;
-        if (DestinationId == null) {
-            if (other.DestinationId != null)
-                return false;
-        } else if (!DestinationId.equals(other.DestinationId))
-            return false;
-        if (DestinationName == null) {
-            if (other.DestinationName != null)
-                return false;
-        } else if (!DestinationName.equals(other.DestinationName))
-            return false;
-        if (Id != other.Id)
-            return false;
-        if (Notes == null) {
-            if (other.Notes != null)
-                return false;
-        } else if (!Notes.equals(other.Notes))
-            return false;
-        if (SourceId == null) {
-            if (other.SourceId != null)
-                return false;
-        } else if (!SourceId.equals(other.SourceId))
-            return false;
-        if (SourceName == null) {
-            if (other.SourceName != null)
-                return false;
-        } else if (!SourceName.equals(other.SourceName))
-            return false;
-        if (Status == null) {
-            if (other.Status != null)
-                return false;
-        } else if (!Status.equals(other.Status))
-            return false;
-        if (Type == null) {
-            if (other.Type != null)
-                return false;
-        } else if (!Type.equals(other.Type))
-            return false;
-        if (UserType == null) {
-            if (other.UserType != null)
-                return false;
-        } else if (!UserType.equals(other.UserType))
-            return false;
-        return true;
+    public int hashCode() {
+        int result;
+        long temp;
+        result = Id;
+        temp = Double.doubleToLongBits(Amount);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (Date != null ? Date.hashCode() : 0);
+        result = 31 * result + (Type != null ? Type.hashCode() : 0);
+        result = 31 * result + (UserType != null ? UserType.hashCode() : 0);
+        result = 31 * result + (DestinationId != null ? DestinationId.hashCode() : 0);
+        result = 31 * result + (DestinationName != null ? DestinationName.hashCode() : 0);
+        result = 31 * result + (SourceId != null ? SourceId.hashCode() : 0);
+        result = 31 * result + (SourceName != null ? SourceName.hashCode() : 0);
+        result = 31 * result + (ClearingDate != null ? ClearingDate.hashCode() : 0);
+        result = 31 * result + (Status != null ? Status.hashCode() : 0);
+        result = 31 * result + (Notes != null ? Notes.hashCode() : 0);
+        result = 31 * result + (Metadata != null ? Metadata.hashCode() : 0);
+        return result;
     }
-
 }

@@ -4,17 +4,17 @@ import com.dwolla.java.sdk.models.PendingRequest;
 
 import java.util.Arrays;
 
-public class RequestsResponse extends Response {
+public class PendingRequestsResponse extends Response {
 
     public PendingRequest[] Response;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof RequestsResponse)) return false;
+        if (!(o instanceof PendingRequestsResponse)) return false;
         if (!super.equals(o)) return false;
 
-        RequestsResponse that = (RequestsResponse) o;
+        PendingRequestsResponse that = (PendingRequestsResponse) o;
 
         if (!Arrays.equals(Response, that.Response)) return false;
 

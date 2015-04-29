@@ -27,7 +27,7 @@ public class DwollaTypedBytesTest {
 
     @Test
     public void testLengthReturnsExpectedLength() {
-        Assert.assertEquals(102, new DwollaTypedBytes(new Gson(), createRequest()).length());
+        Assert.assertEquals(79, new DwollaTypedBytes(new Gson(), createRequest()).length());
     }
 
     @Test
@@ -41,11 +41,11 @@ public class DwollaTypedBytesTest {
             Assert.fail("Unexpected execption thrown");
         }
 
-        Assert.assertEquals("{\"oauth_token\":\"123abc\",\"pin\":\"1234\",\"destinationId\":\"812-000-0000\",\"amount\":0.01,\"assumeCosts\":false}",
+        Assert.assertEquals("{\"pin\":\"1234\",\"destinationId\":\"812-000-0000\",\"amount\":0.01,\"assumeCosts\":false}",
                 out.toString());
     }
 
     private SendRequest createRequest() {
-        return new SendRequest("123abc", "1234", "812-000-0000", 0.01);
+        return new SendRequest("1234", "812-000-0000", 0.01);
     }
 }

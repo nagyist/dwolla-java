@@ -25,11 +25,11 @@ public class FulfillRequestRequestTest {
     }
 
     private FulfillRequestRequest createRequestObject() {
-        return new FulfillRequestRequest("123abc", "123", "456", 1.11, false, "notes", "bank");
+        return new FulfillRequestRequest("123", "456", 1.11, false, "notes", "bank");
     }
 
     private String getJsonString(FulfillRequestRequest obj) {
-        return "{\"oauth_token\":\"123abc\",\"pin\":\"123\",\"request_id\":\"456\",\"amount\":1.11,\"assumeCosts\":false,\"notes\":\"notes\",\"fundsSource\":\"bank\"}";
+        return "{\"pin\":\"123\",\"request_id\":\"456\",\"amount\":1.11,\"assumeCosts\":false,\"notes\":\"notes\",\"fundsSource\":\"bank\"}";
     }
 
 }

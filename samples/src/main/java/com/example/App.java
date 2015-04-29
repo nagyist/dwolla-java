@@ -1,5 +1,6 @@
 package com.example;
 
+import com.dwolla.java.sdk.Consts;
 import com.dwolla.java.sdk.DwollaServiceSync;
 import com.dwolla.java.sdk.DwollaTypedBytes;
 import com.dwolla.java.sdk.OAuthServiceSync;
@@ -27,11 +28,11 @@ public class App {
     public final static String CLIENT_ID = "6t3kALJ5lflODl74xDG5vZt1G0nVEIUAfb5TEglD/KepIQVyOy";
     public final static String CLIENT_SECRET = "cL8dAjRkTeSkXHjLINkVN9Jn+URVVuyVudZTI6IFOxSBsArJef";
     public final static String SENDER_PIN = "1234";
-    // Use 812-713-9234 in production, any money sent to it will be sent right back to you
+    // Use "812-713-9234" in production, any money sent to it will be sent right back to you
     public final static String DESTINATION_ID = "812-172-9684";
 
     public static void main(String[] args) {
-        openBrowserToOAuthUrl();
+        openBrowserToRequestAuthorization();
 
         get(new Route("/") {
             @Override
@@ -42,11 +43,11 @@ public class App {
         });
     }
 
-    private static void openBrowserToOAuthUrl() {
+    private static void openBrowserToRequestAuthorization() {
         try {
             Desktop.getDesktop().browse(
                     new URI(String.format("%s/authenticate?response_type=code&scope=%s&client_id=%s&redirect_uri=%s",
-                            Urls.BASE_OAUTH_URL, encode(SCOPES), encode(CLIENT_ID), encode(REDIRECT_URI))));
+                            Config.BASE_OAUTH_URL, encode(SCOPES), encode(CLIENT_ID), encode(REDIRECT_URI))));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -55,13 +56,13 @@ public class App {
     private static TokenResponse getToken(String code) {
         OAuthServiceSync oAuth = createOAuthService();
         return oAuth.getToken(new DwollaTypedBytes(new Gson(),
-                new TokenRequest(CLIENT_ID, CLIENT_SECRET, "authorization_code", REDIRECT_URI, code)));
+                new TokenRequest(CLIENT_ID, CLIENT_SECRET, Consts.Api.AUTHORIZATION_CODE, REDIRECT_URI, code)));
     }
 
     private static String callApi(String token) {
         DwollaServiceSync dwolla = createDwollaService();
         BasicAccountInformationResponse infoRes = dwolla.getBasicAccountInformation(DESTINATION_ID, CLIENT_ID, CLIENT_SECRET);
-        SendResponse sendRes = dwolla.send(new DwollaTypedBytes(new Gson(), new SendRequest(token, SENDER_PIN, DESTINATION_ID, 0.01)));
+        SendResponse sendRes = dwolla.send(token, new DwollaTypedBytes(new Gson(), new SendRequest(SENDER_PIN, DESTINATION_ID, 0.01)));
 
         return String.format("Account name: \"%s\" Transaction Id: \"%s\"",
                 infoRes.Success ? infoRes.Response.Name : infoRes.Message,
@@ -71,7 +72,7 @@ public class App {
     private static OAuthServiceSync createOAuthService() {
         return new RestAdapter
                 .Builder()
-                .setEndpoint(Urls.BASE_OAUTH_URL)
+                .setEndpoint(Config.BASE_OAUTH_URL)
                 .build()
                 .create(OAuthServiceSync.class);
     }
@@ -79,7 +80,7 @@ public class App {
     private static DwollaServiceSync createDwollaService() {
         return new RestAdapter
                 .Builder()
-                .setEndpoint(Urls.BASE_URL)
+                .setEndpoint(Config.BASE_URL)
                 .build()
                 .create(DwollaServiceSync.class);
     }

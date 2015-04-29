@@ -76,7 +76,7 @@ public interface DwollaServiceAsync {
             @Query(Consts.Api.TOKEN) String oauthToken,
             @Query(Consts.Api.SKIP) int skip,
             @Query(Consts.Api.LIMIT) int limit,
-            Callback<RequestsResponse> callback);
+            Callback<PendingRequestsResponse> callback);
 
     @GET("/requests/{request_id}")
     void getRequest(

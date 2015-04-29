@@ -1,14 +1,16 @@
 package com.dwolla.java.sdk.models;
 
 import java.util.Arrays;
+import java.util.Map;
 
 public class TransactionWithFees extends Transaction {
 
     public Transaction[] Fees;
 
-    public TransactionWithFees(int id, double amount, String date, String type, String userType, String destinationId, String destinationName,
-                               String sourceId, String sourceName, String clearingDate, String status, String notes, Transaction[] fees) {
-        super(id, amount, date, type, userType, destinationId, destinationName, sourceId, sourceName, clearingDate, status, notes);
+    public TransactionWithFees(int id, double amount, String date, String type, String userType, String destinationId,
+                               String destinationName, String sourceId, String sourceName, String clearingDate,
+                               String status, String notes, Map<String, String> metadata, Transaction[] fees) {
+        super(id, amount, date, type, userType, destinationId, destinationName, sourceId, sourceName, clearingDate, status, notes, metadata);
         Fees = fees;
     }
 
