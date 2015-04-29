@@ -24,10 +24,7 @@ public class RequestRequest {
     }
 
     public RequestRequest(String oauth_token, String sourceId, double amount, String sourceType, String facilitatorAmount, String notes) {
-        super();
-        this.oauth_token = oauth_token;
-        this.sourceId = sourceId;
-        this.amount = amount;
+        this(oauth_token, sourceId, amount);
         this.sourceType = sourceType;
         this.facilitatorAmount = facilitatorAmount;
         this.notes = notes;

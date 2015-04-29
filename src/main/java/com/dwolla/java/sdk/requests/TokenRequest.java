@@ -7,15 +7,20 @@ public class TokenRequest {
     public String grant_type;
     public String redirect_uri;
     public String code;
+
     public String refresh_token;
 
-    public TokenRequest(String client_id, String client_secret, String grant_type, String redirect_uri, String code, String refresh_token) {
+    public TokenRequest(String client_id, String client_secret, String grant_type, String redirect_uri, String code) {
         super();
         this.client_id = client_id;
         this.client_secret = client_secret;
         this.grant_type = grant_type;
         this.redirect_uri = redirect_uri;
         this.code = code;
+    }
+
+    public TokenRequest(String client_id, String client_secret, String grant_type, String redirect_uri, String code, String refresh_token) {
+        this(client_id, client_secret, grant_type, redirect_uri, code);
         this.refresh_token = refresh_token;
     }
 

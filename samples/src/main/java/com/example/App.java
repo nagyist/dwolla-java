@@ -1,102 +1,96 @@
 package com.example;
 
-import com.dwolla.java.sdk.DwollaCallback;
-import com.dwolla.java.sdk.DwollaServiceAsync;
 import com.dwolla.java.sdk.DwollaServiceSync;
 import com.dwolla.java.sdk.DwollaTypedBytes;
+import com.dwolla.java.sdk.OAuthServiceSync;
 import com.dwolla.java.sdk.requests.SendRequest;
+import com.dwolla.java.sdk.requests.TokenRequest;
 import com.dwolla.java.sdk.responses.BasicAccountInformationResponse;
 import com.dwolla.java.sdk.responses.SendResponse;
+import com.dwolla.java.sdk.responses.TokenResponse;
 import com.google.gson.Gson;
 import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.Server;
-import retrofit.client.Response;
+import spark.Request;
+import spark.Response;
+import spark.Route;
+
+import java.awt.*;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URLEncoder;
+
+import static spark.Spark.get;
 
 public class App {
-    private final static String baseUrl = "http://localhost:52428";
-    // Sandbox mode: private final static String baseUrl = "https://uat.dwolla.com/oauth/rest";
-    private final static String applicationKey = "BbhAApqJW4FXCeATqeDXj1IDgUY/+LK0GXMy7KUWVLJhTSjs3V";
-    private final static String applicationSecret = "1NE7lhTMIrYUNzcFiiCnb7kMhgwUmzdMj4pZb9BlEoVkJqLe1H";
-    private final static String userOAuthToken = "9iRNr8g0cQqoFsQx6ZXNu3HbX2nf1Dtmq5bs20ZtmkOWZLPuE0";
-    private final static String userPin = "1234";
-
-    // Dwolla Reflector account, any money sent to it will be sent right back to you
-    private final static String testAccountId = "812-713-9234";
+    public final static String SCOPES = "Send|AccountInfoFull";
+    public final static String REDIRECT_URI = "http://localhost:4567";
+    public final static String CLIENT_ID = "6t3kALJ5lflODl74xDG5vZt1G0nVEIUAfb5TEglD/KepIQVyOy";
+    public final static String CLIENT_SECRET = "cL8dAjRkTeSkXHjLINkVN9Jn+URVVuyVudZTI6IFOxSBsArJef";
+    public final static String SENDER_PIN = "1234";
+    // Use 812-713-9234 in production, any money sent to it will be sent right back to you
+    public final static String DESTINATION_ID = "812-172-9684";
 
     public static void main(String[] args) {
-        makeAsynchronousApiCalls();
+        openBrowserToOAuthUrl();
 
-        makeSynchronousApiCalls();
+        get(new Route("/") {
+            @Override
+            public Object handle(Request req, Response res) {
+                TokenResponse tr = getToken(req.queryParams("code"));
+                return callApi(tr.access_token);
+            }
+        });
     }
 
-    private static void makeAsynchronousApiCalls() {
-        DwollaServiceAsync asyncService = createAsynchronousService();
-
-        // Make calls and continue (non-blocking), results printed in callbacks below
-        asyncService.getBasicAccountInformation(testAccountId, applicationKey, applicationSecret,
-            new BasicInformationCallback());
-        asyncService.send(new DwollaTypedBytes(new Gson(), new SendRequest(userOAuthToken, userPin, testAccountId, 0.01)),
-            new SendCallback());
+    private static void openBrowserToOAuthUrl() {
+        try {
+            Desktop.getDesktop().browse(
+                    new URI(String.format("%s/authenticate?response_type=code&scope=%s&client_id=%s&redirect_uri=%s",
+                            Urls.BASE_OAUTH_URL, encode(SCOPES), encode(CLIENT_ID), encode(REDIRECT_URI))));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    private static DwollaServiceAsync createAsynchronousService() {
+    private static TokenResponse getToken(String code) {
+        OAuthServiceSync oAuth = createOAuthService();
+        return oAuth.getToken(new DwollaTypedBytes(new Gson(),
+                new TokenRequest(CLIENT_ID, CLIENT_SECRET, "authorization_code", REDIRECT_URI, code)));
+    }
+
+    private static String callApi(String token) {
+        DwollaServiceSync dwolla = createDwollaService();
+        BasicAccountInformationResponse infoRes = dwolla.getBasicAccountInformation(DESTINATION_ID, CLIENT_ID, CLIENT_SECRET);
+        SendResponse sendRes = dwolla.send(new DwollaTypedBytes(new Gson(), new SendRequest(token, SENDER_PIN, DESTINATION_ID, 0.01)));
+
+        return String.format("Account name: \"%s\" Transaction Id: \"%s\"",
+                infoRes.Success ? infoRes.Response.Name : infoRes.Message,
+                sendRes.Success ? sendRes.Response : sendRes.Message);
+    }
+
+    private static OAuthServiceSync createOAuthService() {
         return new RestAdapter
                 .Builder()
-                .setServer(new Server(baseUrl))
+                .setEndpoint(Urls.BASE_OAUTH_URL)
                 .build()
-                .create(DwollaServiceAsync.class);
+                .create(OAuthServiceSync.class);
     }
 
-    private static void makeSynchronousApiCalls() {
-        DwollaServiceSync syncService = createSynchronousService();
-
-        // Make calls, wait for response (blocking), and print result
-        System.out.println(syncService
-            .getBasicAccountInformation(testAccountId, applicationKey, applicationSecret).Response.Name);
-        System.out.println(syncService
-            .send(new DwollaTypedBytes(new Gson(), new SendRequest(userOAuthToken, userPin, testAccountId, 0.01))).Response);
-    }
-
-    private static DwollaServiceSync createSynchronousService() {
+    private static DwollaServiceSync createDwollaService() {
         return new RestAdapter
                 .Builder()
-                .setServer(new Server(baseUrl))
+                .setEndpoint(Urls.BASE_URL)
                 .build()
                 .create(DwollaServiceSync.class);
     }
 
-    // Callback for asynchronous service call
-    private static class BasicInformationCallback extends DwollaCallback<BasicAccountInformationResponse> {
-        @Override
-        public void success(BasicAccountInformationResponse response, Response r) {
-            if (response.Success)
-                // Print result
-                System.out.println(response.Response.Name);
-            else
-                super.failure(response.Message, this);
-        }
-
-        @Override
-        public void failure(RetrofitError error) {
-            super.failure(error.getMessage(), this);
+    private static String encode(String decoded) {
+        try {
+            return URLEncoder.encode(decoded, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            System.out.println(e.getMessage());
+            return decoded;
         }
     }
 
-    // Callback for asynchronous service call
-    private static class SendCallback extends DwollaCallback<SendResponse> {
-        @Override
-        public void success(SendResponse response, Response r) {
-            if (response.Success)
-                // Print result
-                System.out.println(response.Response);
-            else
-                super.failure(response.Message, this);
-        }
-
-        @Override
-        public void failure(RetrofitError error) {
-            super.failure(error.getMessage(), this);
-        }
-    }
 }

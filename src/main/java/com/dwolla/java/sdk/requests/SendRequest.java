@@ -34,11 +34,7 @@ public class SendRequest {
 
     public SendRequest(String oauth_token, String pin, String destinationId, double amount, boolean assumeCosts, String destinationType,
                        String facilitatorAmount, String notes, String fundsSource, AdditionalFee[] additionalFees) {
-        super();
-        this.oauth_token = oauth_token;
-        this.pin = pin;
-        this.destinationId = destinationId;
-        this.amount = amount;
+        this(oauth_token, pin, destinationId, amount);
         this.assumeCosts = assumeCosts;
         this.destinationType = destinationType;
         this.facilitatorAmount = facilitatorAmount;

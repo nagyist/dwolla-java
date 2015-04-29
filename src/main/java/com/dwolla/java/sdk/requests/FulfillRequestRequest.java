@@ -25,13 +25,8 @@ public class FulfillRequestRequest {
         this.amount = amount;
     }
 
-    public FulfillRequestRequest(String oauth_token, String pin, String request_id, double amount, boolean assumeCosts, String notes,
-                                 String fundsSource) {
-        super();
-        this.oauth_token = oauth_token;
-        this.pin = pin;
-        this.request_id = request_id;
-        this.amount = amount;
+    public FulfillRequestRequest(String oauth_token, String pin, String request_id, double amount, boolean assumeCosts, String notes, String fundsSource) {
+        this(oauth_token, pin, request_id, amount);
         this.assumeCosts = assumeCosts;
         this.notes = notes;
         this.fundsSource = fundsSource;
