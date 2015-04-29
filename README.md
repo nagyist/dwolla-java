@@ -31,7 +31,7 @@ dependencies {
     * Clone the repo, open dwolla-java/samples/src/main/java/com/example/App.java and set the SENDER_PIN to that of your Sandbox Account
     * From the dwolla-java/samples directory, run `mvn package && java -cp target/dwolla-example-1.0-SNAPSHOT.jar com.example.App`
     * Enter your Sandbox credentials in the OAuth flow when prompted
-    * Seeing 'Account name: "Dwolla Kwolla" Transaction Id: "<transaction_id>"' means you just sent money
+    * Seeing 'Account name: "Dwolla Kwolla" Transaction Id: "{transaction_id}"' means you just sent money
 
 ## Support
 
