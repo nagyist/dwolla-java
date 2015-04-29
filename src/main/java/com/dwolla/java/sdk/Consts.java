@@ -22,6 +22,7 @@ public class Consts {
         public static final String TRANSACTION_ID = "transaction_id";
         public static final String DESTINATION_ID = "destinationId";
         public static final String DESTINATION_TYPE = "destinationType";
+
     }
 
     public static class UserType {
