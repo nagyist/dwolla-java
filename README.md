@@ -28,10 +28,10 @@ dependencies {
 * If you haven't already, follow the [Getting Started](https://developers.dwolla.com/dev/docs) documentation to create a Sandbox Account
 * To run the sample project:
     * Follow the instructions [here](https://maven.apache.org/download.cgi) to download and install Maven
-    * Clone the repo, open dwolla-java/samples/src/main/java/com/example/App.java and set the SENDER_PIN to that of your Sandbox Account
+    * Clone the repo, open dwolla-java/samples/**/App.java and set the SENDER_PIN to that of your Sandbox Account
     * From the dwolla-java/samples directory, run `mvn package && java -cp target/dwolla-example-1.0-SNAPSHOT.jar com.example.App`
     * Enter your Sandbox credentials in the OAuth flow when prompted
-    * Seeing 'Account name: "Dwolla Kwolla" Transaction Id: "{transaction_id}"' means you just sent money
+    * Seeing the account name and transaction id in the browser means you successfully sent money with Dwolla!
 
 ## Support
 
