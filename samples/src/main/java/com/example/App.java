@@ -1,11 +1,11 @@
 package com.example;
 
 import com.dwolla.java.sdk.*;
+import com.dwolla.java.sdk.models.Item;
+import com.dwolla.java.sdk.requests.CreateJobRequest;
 import com.dwolla.java.sdk.requests.SendRequest;
 import com.dwolla.java.sdk.requests.TokenRequest;
-import com.dwolla.java.sdk.responses.BasicAccountInformationResponse;
-import com.dwolla.java.sdk.responses.SendResponse;
-import com.dwolla.java.sdk.responses.TokenResponse;
+import com.dwolla.java.sdk.responses.*;
 import com.google.gson.Gson;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -17,11 +17,13 @@ import java.awt.*;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import static spark.Spark.get;
 
 public class App {
-    public final static String SCOPES = "Send|AccountInfoFull";
+    public final static String SCOPES = "Send|AccountInfoFull|Funding";
     public final static String REDIRECT_URI = "http://localhost:4567/callback";
     public final static String CLIENT_ID = "6t3kALJ5lflODl74xDG5vZt1G0nVEIUAfb5TEglD/KepIQVyOy";
     public final static String CLIENT_SECRET = "cL8dAjRkTeSkXHjLINkVN9Jn+URVVuyVudZTI6IFOxSBsArJef";
@@ -66,12 +68,18 @@ public class App {
 
     private static String callApi(String token) {
         DwollaServiceSync dwolla = createDwollaService();
-        BasicAccountInformationResponse infoRes = dwolla.getBasicAccountInformation(DESTINATION_ID, CLIENT_ID, CLIENT_SECRET);
-        SendResponse sendRes = dwolla.send(token, new DwollaTypedBytes(new Gson(), new SendRequest(SENDER_PIN, DESTINATION_ID, 0.01)));
+//        BasicAccountInformationResponse infoRes = dwolla.getBasicAccountInformation(DESTINATION_ID, CLIENT_ID, CLIENT_SECRET);
+//        SendResponse sendRes = dwolla.send(token, new DwollaTypedBytes(new Gson(), new SendRequest(SENDER_PIN, DESTINATION_ID, 0.01)));
 
-        return String.format("Synchronous account name: \"%s\" | Synchronous transaction id: \"%s\" | Check console output for asynchronous responses",
-                infoRes.Success ? infoRes.Response.Name : infoRes.Message,
-                sendRes.Success ? sendRes.Response : sendRes.Message);
+//        return String.format("Synchronous account name: \"%s\" | Synchronous transaction id: \"%s\" | Check console output for asynchronous responses",
+//                infoRes.Success ? infoRes.Response.Name : infoRes.Message,
+//                sendRes.Success ? sendRes.Response : sendRes.Message);
+
+        FundingSourcesListingResponse fsRes = dwolla.getFundingSourcesListing(token, null, null);
+        Item[] items = new Item[1];
+        items[0] = new Item(1.01, "rocky+mp@dwolla.com", Consts.UserType.EMAIL);
+        CreateJobResponse jobRes = dwolla.createJob(token, new DwollaTypedBytes(new Gson(), new CreateJobRequest(fsRes.Response[1].Id, SENDER_PIN, items)));
+        return jobRes.Response.Status + " " + jobRes.Response.Total + " " + jobRes.Response.Id;
     }
 
     private static OAuthServiceSync createOAuthService() {

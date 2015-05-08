@@ -9,7 +9,7 @@ public class CreateJobRequest {
     /**
      * Required
      */
-    public String fundingSource;
+    public String fundsSource;
     public String pin;
     public Item[] items;
 
@@ -19,14 +19,14 @@ public class CreateJobRequest {
     public String userJobId;
     public boolean assumeCosts;
 
-    public CreateJobRequest(String fundingSource, String pin, Item[] items) {
-        this.fundingSource = fundingSource;
+    public CreateJobRequest(String fundsSource, String pin, Item[] items) {
+        this.fundsSource = fundsSource;
         this.pin = pin;
         this.items = items;
     }
 
-    public CreateJobRequest(String fundingSource, String pin, Item[] items, String userJobId, boolean assumeCosts) {
-        this(fundingSource, pin, items);
+    public CreateJobRequest(String fundsSource, String pin, Item[] items, String userJobId, boolean assumeCosts) {
+        this(fundsSource, pin, items);
         this.userJobId = userJobId;
         this.assumeCosts = assumeCosts;
     }
@@ -42,7 +42,7 @@ public class CreateJobRequest {
         CreateJobRequest that = (CreateJobRequest) o;
 
         if (assumeCosts != that.assumeCosts) return false;
-        if (fundingSource != null ? !fundingSource.equals(that.fundingSource) : that.fundingSource != null)
+        if (fundsSource != null ? !fundsSource.equals(that.fundsSource) : that.fundsSource != null)
             return false;
         if (pin != null ? !pin.equals(that.pin) : that.pin != null) return false;
         // Probably incorrect - comparing Object[] arrays with Arrays.equals
@@ -53,7 +53,7 @@ public class CreateJobRequest {
 
     @Override
     public int hashCode() {
-        int result = fundingSource != null ? fundingSource.hashCode() : 0;
+        int result = fundsSource != null ? fundsSource.hashCode() : 0;
         result = 31 * result + (pin != null ? pin.hashCode() : 0);
         result = 31 * result + (items != null ? Arrays.hashCode(items) : 0);
         result = 31 * result + (userJobId != null ? userJobId.hashCode() : 0);

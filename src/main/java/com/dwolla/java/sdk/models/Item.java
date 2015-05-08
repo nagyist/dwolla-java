@@ -22,9 +22,13 @@ public class Item {
         this.destination = destination;
     }
 
-    public Item(double amount, String destination, String destinationType, String notes, Map<String, String> metadata) {
+    public Item(double amount, String destination, String destinationType) {
         this(amount, destination);
         this.destinationType = destinationType;
+    }
+
+    public Item(double amount, String destination, String destinationType, String notes, Map<String, String> metadata) {
+        this(amount, destination, destinationType);
         this.notes = notes;
         this.metadata = metadata;
     }

@@ -36,7 +36,7 @@ public class CreateJobRequestTest {
     }
 
     private String getJsonString(CreateJobRequest obj) {
-        return "{\"fundingSource\":\"Balance\",\"pin\":\"1234\",\"items\":[{\"amount\":0.01,\"destination\":\"812-000-0001\",\"destinationType\":\"Dwolla\",\"notes\":\"notes\",\"metadata\":{\"dog\":\"cat\"}}],\"userJobId\":\"456\",\"assumeCosts\":true}";
+        return "{\"fundsSource\":\"Balance\",\"pin\":\"1234\",\"items\":[{\"amount\":0.01,\"destination\":\"812-000-0001\",\"destinationType\":\"Dwolla\",\"notes\":\"notes\",\"metadata\":{\"dog\":\"cat\"}}],\"userJobId\":\"456\",\"assumeCosts\":true}";
     }
 
 }
