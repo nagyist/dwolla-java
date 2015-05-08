@@ -68,18 +68,12 @@ public class App {
 
     private static String callApi(String token) {
         DwollaServiceSync dwolla = createDwollaService();
-//        BasicAccountInformationResponse infoRes = dwolla.getBasicAccountInformation(DESTINATION_ID, CLIENT_ID, CLIENT_SECRET);
-//        SendResponse sendRes = dwolla.send(token, new DwollaTypedBytes(new Gson(), new SendRequest(SENDER_PIN, DESTINATION_ID, 0.01)));
+        BasicAccountInformationResponse infoRes = dwolla.getBasicAccountInformation(DESTINATION_ID, CLIENT_ID, CLIENT_SECRET);
+        SendResponse sendRes = dwolla.send(token, new DwollaTypedBytes(new Gson(), new SendRequest(SENDER_PIN, DESTINATION_ID, 0.01)));
 
-//        return String.format("Synchronous account name: \"%s\" | Synchronous transaction id: \"%s\" | Check console output for asynchronous responses",
-//                infoRes.Success ? infoRes.Response.Name : infoRes.Message,
-//                sendRes.Success ? sendRes.Response : sendRes.Message);
-
-        FundingSourcesListingResponse fsRes = dwolla.getFundingSourcesListing(token, null, null);
-        Item[] items = new Item[1];
-        items[0] = new Item(1.01, "rocky+mp@dwolla.com", Consts.UserType.EMAIL);
-        CreateJobResponse jobRes = dwolla.createJob(token, new DwollaTypedBytes(new Gson(), new CreateJobRequest(fsRes.Response[1].Id, SENDER_PIN, items)));
-        return jobRes.Response.Status + " " + jobRes.Response.Total + " " + jobRes.Response.Id;
+        return String.format("Synchronous account name: \"%s\" | Synchronous transaction id: \"%s\" | Check console output for asynchronous responses",
+                infoRes.Success ? infoRes.Response.Name : infoRes.Message,
+                sendRes.Success ? sendRes.Response : sendRes.Message);
     }
 
     private static OAuthServiceSync createOAuthService() {
