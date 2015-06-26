@@ -1,11 +1,11 @@
 package com.example;
 
 import com.dwolla.java.sdk.*;
-import com.dwolla.java.sdk.models.Item;
-import com.dwolla.java.sdk.requests.CreateJobRequest;
 import com.dwolla.java.sdk.requests.SendRequest;
 import com.dwolla.java.sdk.requests.TokenRequest;
-import com.dwolla.java.sdk.responses.*;
+import com.dwolla.java.sdk.responses.BasicAccountInformationResponse;
+import com.dwolla.java.sdk.responses.SendResponse;
+import com.dwolla.java.sdk.responses.TokenResponse;
 import com.google.gson.Gson;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -17,8 +17,6 @@ import java.awt.*;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 
 import static spark.Spark.get;
 

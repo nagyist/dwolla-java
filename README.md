@@ -13,13 +13,13 @@ The [Dwolla API](http://developers.dwolla.com/dev) wrapper for Java and Android.
 <dependency>
   <groupId>com.dwolla</groupId>
   <artifactId>dwolla-java-sdk</artifactId>
-  <version>2.0.4</version>
+  <version>2.0.5</version>
 </dependency>
 ```
 For Gradle (Android's new default build automator), add the following to build.gradle:
 ```
 dependencies {
-  classpath 'com.dwolla:dwolla-java-sdk:2.0.4'
+  classpath 'com.dwolla:dwolla-java-sdk:2.0.5'
 }
 ```
 
