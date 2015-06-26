@@ -12,14 +12,14 @@ public class TokenResponseTest {
 
         String actual = new Gson().toJson(response);
 
-        Assert.assertEquals(getJsonString(response), actual);
+        Assert.assertEquals(getJsonString(), actual);
     }
 
     @Test
     public void testConversionFromJson() {
         TokenResponse expected = createResponseObject();
 
-        TokenResponse actual = new Gson().fromJson(getJsonString(expected), TokenResponse.class);
+        TokenResponse actual = new Gson().fromJson(getJsonString(), TokenResponse.class);
 
         Assert.assertEquals(expected, actual);
     }
@@ -31,12 +31,13 @@ public class TokenResponseTest {
         response.refresh_token = "refreshToken";
         response.refresh_expires_in = 456;
         response.token_type = "tokenType";
+        response.error = "error";
+        response.error_description = "errorDescription";
         return response;
     }
 
-    private String getJsonString(TokenResponse obj) {
-        return String.format("{\"access_token\":\"%s\",\"expires_in\":%d,\"refresh_token\":\"%s\",\"refresh_expires_in\":%d,\"token_type\":\"%s\"}",
-                obj.access_token, obj.expires_in, obj.refresh_token, obj.refresh_expires_in, obj.token_type);
+    private String getJsonString() {
+        return "{\"access_token\":\"accessToken\",\"expires_in\":123,\"refresh_token\":\"refreshToken\",\"refresh_expires_in\":456,\"token_type\":\"tokenType\",\"error\":\"error\",\"error_description\":\"errorDescription\"}";
     }
 
 }
