@@ -7,6 +7,9 @@ import com.dwolla.java.sdk.responses.BasicAccountInformationResponse;
 import com.dwolla.java.sdk.responses.SendResponse;
 import com.dwolla.java.sdk.responses.TokenResponse;
 import com.google.gson.Gson;
+import io.swagger.client.ApiClient;
+import io.swagger.client.ApiException;
+import io.swagger.client.api.CustomersApi;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import spark.Request;
@@ -30,16 +33,25 @@ public class App {
     public final static String DESTINATION_ID = "812-172-9684";
 
     public static void main(String[] args) {
-        openBrowserToRequestAuthorization();
-
-        get(new Route("/callback") {
-            @Override
-            public Object handle(Request req, Response res) {
-                TokenResponse tr = getToken(req.queryParams("code"));
-                callApiAsync(tr.access_token);
-                return callApi(tr.access_token);
-            }
-        });
+        ApiClient client = new ApiClient();
+        client.setBasePath("http://api-uat.dwolla.com");
+        client.addDefaultHeader("Authorization", "Bearer NmMGDSD3pETrChtOeGbf6nmnBLD0lNGjtCpghwusJ8O2OBz9WQ");
+        CustomersApi api = new CustomersApi(client);
+        try {
+            System.out.println(api.list(10, 0));
+        } catch (ApiException e) {
+            System.out.println(e.getMessage());
+        }
+//        openBrowserToRequestAuthorization();
+//
+//        get(new Route("/callback") {
+//            @Override
+//            public Object handle(Request req, Response res) {
+//                TokenResponse tr = getToken(req.queryParams("code"));
+//                callApiAsync(tr.access_token);
+//                return callApi(tr.access_token);
+//            }
+//        });
     }
 
     private static void openBrowserToRequestAuthorization() {

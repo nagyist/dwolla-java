@@ -105,7 +105,7 @@
         <!-- Dependencies -->
         <retrofit.version>1.9.0</retrofit.version>
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
-        <commons-logging.version>1.2</commons-logging.version>
+        <slf4j.version>1.7.21</slf4j.version>
         <joda-time.version>2.7</joda-time.version>
 
         <!-- Test Dependencies -->
@@ -118,7 +118,6 @@
             <groupId>com.squareup.retrofit</groupId>
             <artifactId>retrofit</artifactId>
             <version>${retrofit.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>joda-time</groupId>
@@ -126,9 +125,9 @@
             <version>${joda-time.version}</version>
         </dependency>
         <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>${commons-logging.version}</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

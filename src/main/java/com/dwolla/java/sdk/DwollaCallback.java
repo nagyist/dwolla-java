@@ -1,7 +1,7 @@
 package com.dwolla.java.sdk;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Header;
@@ -11,18 +11,18 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public abstract class DwollaCallback<T> implements Callback<T> {
-    private Log log = LogFactory.getLog(DwollaCallback.class);
+    private Logger logger = LoggerFactory.getLogger(DwollaCallback.class);
 
-    public void setLog(Log log) {
-        if (log != null) {
-            this.log = log;
+    public void setLog(Logger logger) {
+        if (logger != null) {
+            this.logger = logger;
         }
     }
 
     @Override
     public void success(T t, Response response) {
         if (t != null) {
-            log.info("Retrofit success: " + t.getClass().getName());
+            logger.info("Retrofit success: " + t.getClass().getName());
         }
     }
 
@@ -64,7 +64,7 @@ public abstract class DwollaCallback<T> implements Callback<T> {
     }
 
     public void failure(String message, DwollaCallback<?> c) {
-        log.error("Dwolla API Failure - " + c.getClass().getName() + ": " + message);
+        logger.error("Dwolla API Failure - " + c.getClass().getName() + ": " + message);
     }
 
 }

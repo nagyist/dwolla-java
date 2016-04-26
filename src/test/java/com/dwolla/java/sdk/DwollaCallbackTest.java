@@ -2,10 +2,10 @@ package com.dwolla.java.sdk;
 
 import com.dwolla.java.sdk.responses.BalanceResponse;
 import com.google.gson.Gson;
-import org.apache.commons.logging.Log;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
 import retrofit.RetrofitError;
 import retrofit.client.Header;
 import retrofit.client.Response;
@@ -24,13 +24,13 @@ import static org.mockito.Mockito.verify;
 
 public class DwollaCallbackTest {
     private DwollaCallback<BalanceResponse> callback;
-    private Log log;
+    private Logger logger;
 
     @Before
     public void setUp() {
         callback = new TestCallback();
-        log = mock(Log.class);
-        callback.setLog(log);
+        logger = mock(Logger.class);
+        callback.setLog(logger);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class DwollaCallbackTest {
 
         callback.success(response, null);
 
-        verify(log).info(String.format("Retrofit success: %s", response.getClass().getName()));
+        verify(logger).info(String.format("Retrofit success: %s", response.getClass().getName()));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class DwollaCallbackTest {
 
         callback.failure(message, new TestCallback());
 
-        verify(log).error(String.format("Dwolla API Failure - com.dwolla.java.sdk.DwollaCallbackTest$TestCallback: %s", message));
+        verify(logger).error(String.format("Dwolla API Failure - com.dwolla.java.sdk.DwollaCallbackTest$TestCallback: %s", message));
     }
 
     private static class TypedInputStream implements TypedInput {
