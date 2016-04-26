@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/therockstorm/dwolla-java-sdk.png?branch=master)](https://travis-ci.org/therockstorm/dwolla-java-sdk)
 
-The [Dwolla API](http://developers.dwolla.com/dev) wrapper for Java and Android. See the DwollaServiceAsync and DwollaServiceSync classes for the supported endpoints. It uses the [Retrofit](https://github.com/square/retrofit) REST client by Square. For more information, see Retrofit's [documentation](https://square.github.io/retrofit/).
+The [Dwolla API](https://developers.dwolla.com/) wrapper for Java and Android. See the DwollaServiceAsync and DwollaServiceSync classes for the supported endpoints. It uses the [Retrofit](https://github.com/square/retrofit) REST client by Square. For more information, see Retrofit's [documentation](https://square.github.io/retrofit/).
 
 ## Using with Maven and Gradle
 
